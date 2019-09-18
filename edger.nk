@@ -1,0 +1,81 @@
+set cut_paste_input [stack 0]
+version 11.2 v3
+push $cut_paste_input
+Group {
+name Edger1
+tile_color 0xccc100ff
+selected true
+xpos -385
+ypos 1813
+addUserKnob {20 User}
+addUserKnob {7 angle R -180 180}
+angle -125
+addUserKnob {7 length R 0 20}
+length 2
+addUserKnob {7 bias}
+bias 1
+addUserKnob {6 clamp +STARTLINE}
+}
+Input {
+inputs 0
+name Input1
+xpos 510
+ypos 398
+}
+Dot {
+name Dot1
+xpos 544
+ypos 498
+}
+set N394a49e0 [stack 0]
+Transform {
+translate {{parent.length} 0}
+rotate {{parent.angle}}
+center {720 540}
+name Transform8
+xpos 400
+ypos 494
+}
+Transform {
+rotate {{-parent.Transform8.rotate}}
+center {720 540}
+name Transform9
+xpos 400
+ypos 542
+}
+push $N394a49e0
+Merge2 {
+inputs 2
+operation minus
+name Merge17
+xpos 510
+ypos 542
+}
+Transform {
+translate {{-parent.Transform8.translate.x*parent.bias} 0}
+rotate {{parent.Transform8.rotate}}
+center {720 540}
+name Transform14
+xpos 510
+ypos 590
+}
+Transform {
+rotate {{-parent.Transform14.rotate}}
+center {720 540}
+name Transform15
+xpos 510
+ypos 638
+}
+Clamp {
+channels rgba
+name Clamp1
+xpos 510
+ypos 686
+disable {{!parent.clamp}}
+}
+Output {
+name Output1
+xpos 510
+ypos 758
+}
+end_group
