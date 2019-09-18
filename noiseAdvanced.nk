@@ -1,0 +1,87 @@
+set cut_paste_input [stack 0]
+version 11.2 v3
+push $cut_paste_input
+Group {
+ name Noise_Advanced_v01_2
+ selected true
+ xpos 515
+ ypos 1725
+ addUserKnob {20 Noise}
+ addUserKnob {26 desc l "" +STARTLINE T "\n::Noise_Advanced_v01_::\n\nby Tony Lyons"}
+ addUserKnob {26 ""}
+ addUserKnob {41 output T Noise1.output}
+ addUserKnob {41 premult T Noise1.premult}
+ addUserKnob {41 cliptype l "clip to" T Noise1.cliptype}
+ addUserKnob {41 replace -STARTLINE T Noise1.replace}
+ addUserKnob {41 invert -STARTLINE T Noise1.invert}
+ addUserKnob {41 opacity T Noise1.opacity}
+ addUserKnob {41 maskChannelInput l mask T Noise1.maskChannelInput}
+ addUserKnob {41 inject -STARTLINE T Noise1.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Noise1.invert_mask}
+ addUserKnob {26 ""}
+ addUserKnob {41 type T Noise1.type}
+ addUserKnob {26 ""}
+ addUserKnob {41 size l x/ysize T FOR_SETTINGS.size}
+ addUserKnob {7 speedSizeX l "Speed of size X" R 0 4}
+ addUserKnob {7 speedSizeY l "Speed of size Y" R 0 4}
+ addUserKnob {26 ""}
+ addUserKnob {41 zoffset l z T FOR_SETTINGS.zoffset}
+ addUserKnob {7 speedZ l "Speed of Z" R 0 0.25}
+ addUserKnob {26 ""}
+ addUserKnob {41 octaves T Noise1.octaves}
+ addUserKnob {41 nyquist l "clip at Nyquist limit" -STARTLINE T Noise1.nyquist}
+ addUserKnob {41 lacunarity T Noise1.lacunarity}
+ addUserKnob {41 gain T Noise1.gain}
+ addUserKnob {41 gamma T Noise1.gamma}
+ addUserKnob {20 Transform}
+ addUserKnob {41 transform T Noise1.transform}
+ addUserKnob {41 translate T FOR_SETTINGS.translate}
+ addUserKnob {7 transX l "Speed of Trans X" R 0 400}
+ addUserKnob {7 transY l "Speed of Trans Y" R 0 400}
+ addUserKnob {26 ""}
+ addUserKnob {41 rotate T FOR_SETTINGS.rotate}
+ addUserKnob {7 rotSpeed l "Speed of Rotation" R 0 60}
+ addUserKnob {26 ""}
+ addUserKnob {41 scale T FOR_SETTINGS.scale}
+ addUserKnob {7 speedScaleX l "Speed of Scale X" R 0 4}
+ addUserKnob {7 speedScaleY l "Speed of Scale Y" R 0 4}
+ addUserKnob {26 ""}
+ addUserKnob {41 skew +INVISIBLE T Noise1.skew}
+ addUserKnob {41 center T Noise1.center}
+ addUserKnob {41 xrotate T Noise1.xrotate}
+ addUserKnob {41 yrotate T Noise1.yrotate}
+ addUserKnob {20 "" l Color}
+ addUserKnob {41 color T Noise1.color}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -205
+  ypos -221
+ }
+set N90b19b0 [stack 0]
+ Noise {
+  size {{parent.FOR_SETTINGS.size.0+(t*parent.speedSizeX) i} {parent.FOR_SETTINGS.size.1+(t*parent.speedSizeY) i}}
+  zoffset {{parent.FOR_SETTINGS.zoffset+(frame*speedZ) i}}
+  translate {{parent.FOR_SETTINGS.translate.x+t*transX i} {parent.FOR_SETTINGS.translate.y+t*transY i}}
+  rotate {{parent.FOR_SETTINGS.rotate+(t*rotSpeed) i}}
+  scale {{parent.FOR_SETTINGS.scale.w+(t*speedScaleX) i} {parent.FOR_SETTINGS.scale.h+(t*speedScaleY) i}}
+  center {{input.width/2} {input.height/2}}
+  name Noise1
+  selected true
+  xpos -205
+  ypos -163
+ }
+ Output {
+  name Output1
+  xpos -205
+  ypos -81
+ }
+push $N90b19b0
+ Noise {
+  center {960 540}
+  name FOR_SETTINGS
+  xpos -72
+  ypos -175
+ }
+end_group
