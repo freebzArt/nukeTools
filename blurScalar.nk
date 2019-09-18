@@ -1,0 +1,62 @@
+set cut_paste_input [stack 0]
+version 11.2 v3
+push $cut_paste_input
+Group {
+ name scalar_blur
+ tile_color 0xff660000
+ selected true
+ xpos 609
+ ypos -379
+ addUserKnob {20 User}
+ addUserKnob {41 scale T Reformat5.scale}
+ addUserKnob {41 size l blur T Blur2.size}
+ addUserKnob {41 size_1 l erode T FilterErode1.size}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -561
+  ypos 487
+ }
+ Reformat {
+  type scale
+  scale 0.1
+  pbb true
+  name Reformat5
+  xpos -561
+  ypos 525
+ }
+ Clamp {
+  maximum_enable false
+  name Clamp3
+  xpos -561
+  ypos 549
+ }
+ FilterErode {
+  channels all
+  size 0.02
+  name FilterErode1
+  xpos -561
+  ypos 585
+ }
+ Blur {
+  size 115
+  crop false
+  name Blur2
+  xpos -561
+  ypos 621
+ }
+ Reformat {
+  type scale
+  scale {{1/(parent.Reformat5.scale)}}
+  pbb true
+  name Reformat9
+  xpos -561
+  ypos 657
+ }
+ Output {
+  name Output1
+  xpos -561
+  ypos 759
+ }
+end_group
