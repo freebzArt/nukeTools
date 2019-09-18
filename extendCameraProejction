@@ -1,0 +1,7 @@
+EXTEND CAMERA PROJECTION VIEW
+
+1/Reformat1.scale*25
+
+or
+
+1/transform*nativeFocalLength
