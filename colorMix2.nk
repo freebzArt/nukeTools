@@ -1,0 +1,111 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+name ColorMix2
+tile_color 0x263bffff
+label "merge color only"
+selected true
+xpos 2131
+ypos -6648
+addUserKnob {20 User}
+addUserKnob {41 colorspace_out l colorspace T Colorspace_luma_in.colorspace_out}
+addUserKnob {26 ""}
+addUserKnob {41 mix T Mix.mix}
+addUserKnob {26 ""}
+addUserKnob {41 maskChannelMask l mask -STARTLINE T Mix.maskChannelMask}
+addUserKnob {41 inject -STARTLINE T Mix.inject}
+addUserKnob {41 invert_mask l invert -STARTLINE T Mix.invert_mask}
+addUserKnob {41 fringe -STARTLINE T Mix.fringe}
+}
+Input {
+inputs 0
+name Mask
+xpos 320
+ypos -1
+number 2
+}
+Input {
+inputs 0
+name Luminance_In
+xpos 494
+ypos -270
+}
+Dot {
+name Dot5
+xpos 528
+ypos -175
+}
+set N5b1e23f0 [stack 0]
+Colorspace {
+colorspace_out HSV
+name Colorspace_luma_in
+xpos 686
+ypos -178
+}
+set N5b1e1ef0 [stack 0]
+Input {
+inputs 0
+name Color_In
+xpos 799
+ypos -273
+number 1
+}
+Colorspace {
+channels {{{Colorspace1.channels}}}
+colorspace_out HSV
+maskChannelMask {{{Colorspace1.maskChannelMask}}}
+maskChannelInput {{{Colorspace1.maskChannelInput}}}
+unpremult {{{Colorspace1.unpremult}}}
+name Colorspace_color_in
+xpos 799
+ypos -178
+}
+set N3b284110 [stack 0]
+Copy {
+inputs 2
+from0 rgba.red
+to0 rgba.red
+name Copy1
+xpos 799
+ypos -86
+}
+push $N5b1e1ef0
+push $N3b284110
+Copy {
+inputs 2
+from0 rgba.blue
+to0 rgba.blue
+name Copy3
+xpos 694
+ypos -88
+}
+Switch {
+inputs 2
+name Switch1
+xpos 758
+ypos -38
+}
+Colorspace {
+channels {{{Colorspace1.channels}}}
+colorspace_in HSV
+name Colorspace_out
+xpos 758
+ypos -5
+}
+push $N5b1e23f0
+Merge2 {
+inputs 2+1
+operation copy
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+maskChannelMask -rgba.alpha
+name Mix
+xpos 494
+ypos -1
+}
+Output {
+name Output1
+xpos 494
+ypos 100
+}
+end_group
