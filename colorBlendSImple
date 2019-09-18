@@ -1,0 +1,167 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+name Color_Blend_Simple2
+tile_color 0x55bfffff
+selected true
+xpos 2176
+ypos -6479
+addUserKnob {20 User}
+addUserKnob {41 size l "Blur Amount" T Blur4.size}
+addUserKnob {41 mix T Copy1.mix}
+addUserKnob {41 bbox l "set bbox to " T Merge21.bbox}
+}
+Input {
+inputs 0
+name InputPlate
+xpos -39
+ypos 494
+}
+Dot {
+name Dot1
+xpos -5
+ypos 550
+}
+set N3b7cca50 [stack 0]
+Dot {
+name Dot3
+xpos 295
+ypos 550
+}
+set Nb654a6b0 [stack 0]
+Dot {
+name Dot4
+xpos 295
+ypos 810
+}
+set N1069dac0 [stack 0]
+Dot {
+name Dot2
+xpos 295
+ypos 1048
+}
+Input {
+inputs 0
+name mask
+xpos 394
+ypos 828
+number 2
+}
+Invert {
+name Invert1
+xpos 394
+ypos 909
+}
+push $N1069dac0
+push $Nb654a6b0
+Keyer {
+operation "luminance key"
+range {0.03415478289 0.3361063932 1 1}
+name Keyer1
+xpos 153
+ypos 755
+}
+Input {
+inputs 0
+name InputCG
+xpos -542
+ypos 513
+number 1
+}
+Shuffle {
+alpha white
+name Shuffle8
+label "\[value in]"
+xpos -542
+ypos 611
+}
+Blur {
+channels rgb
+size 100
+name Blur4
+label "\[value size]"
+xpos -542
+ypos 681
+}
+Colorspace {
+colorspace_out YCbCr
+name Colorspace3
+xpos -542
+ypos 748
+}
+push $N3b7cca50
+Shuffle {
+alpha white
+name Shuffle9
+label "\[value in]"
+xpos -218
+ypos 620
+}
+Colorspace {
+colorspace_out YCbCr
+name Colorspace4
+selected true
+xpos -218
+ypos 679
+}
+Copy {
+inputs 2
+from0 rgba.green
+to0 rgba.green
+from1 rgba.blue
+to1 rgba.blue
+mix 0.4
+name Copy1
+xpos -218
+ypos 736
+}
+Colorspace {
+colorspace_in YCbCr
+name Colorspace5
+xpos -218
+ypos 825
+}
+push $N3b7cca50
+Merge2 {
+inputs 2+1
+bbox B
+maskChannelMask {{{len(nuke.dependencies( [nuke.thisNode()], nuke.INPUTS | nuke.HIDDEN_INPUTS | nuke.EXPRESSIONS )) > 1}}}
+name Merge21
+xpos -39
+ypos 825
+}
+set N106e66b0 [stack 0]
+Keymix {
+inputs 3
+name Keymix1
+xpos -39
+ypos 909
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+name Copy2
+xpos -39
+ypos 1038
+}
+set N10c92e00 [stack 0]
+Output {
+name Output2
+xpos -39
+ypos 1120
+}
+push $N106e66b0
+push $N10c92e00
+Viewer {
+inputs 2
+frame_range 1001-1067
+input_process false
+far 1000000
+translate {-0.1659999937 -0.06400000304}
+name Viewer1
+xpos 376
+ypos 1093
+}
+end_group
