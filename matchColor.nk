@@ -1,0 +1,225 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+name MatchColor1
+knobChanged "n = nuke.thisNode()\nk = nuke.thisKnob()\n\nif k.name() == \"method\":\n\n\tif k.getValue()==0:\n\n\t\tn.knob('checkSelect').setVisible(False)\n\n\t\tn.knob('snap').setEnabled(False)\n\n\t\tn.knob('onscreenlocater').setEnabled(False)\n\n\t\tn.knob('radius').setEnabled(False)\n\n\telse:\n\n\t\tn.knob('checkSelect').setVisible(True)\n\n\t\tn.knob('snap').setEnabled(True)\n\n\t\tn.knob('onscreenlocater').setEnabled(True)\n\n\t\tn.knob('radius').setEnabled(True)"
+tile_color 0xff3402ff
+note_font_size 15
+selected true
+xpos 2321
+ypos -6587
+addUserKnob {20 Match_color l "Match Color"}
+addUserKnob {4 method l Method M {Multiply Colorspace "" "" "" "" "" "" ""}}
+method Colorspace
+addUserKnob {6 checkSelect l saturation +STARTLINE}
+checkSelect true
+addUserKnob {7 blur_size l "Blur Size" R 0 100}
+blur_size 200
+addUserKnob {7 dissolve l Dissolve}
+dissolve 0.32
+}
+Input {
+inputs 0
+name source
+xpos 1219
+ypos -657
+}
+Dot {
+name Dot74
+xpos 1247
+ypos -561
+}
+set Na685570 [stack 0]
+Dot {
+name Dot5
+xpos 1249
+ypos -237
+}
+set Na69ea90 [stack 0]
+Input {
+inputs 0
+name mask
+xpos 1664
+ypos -10
+number 2
+}
+Input {
+inputs 0
+name target
+xpos 1907
+ypos -596
+number 1
+}
+Blur {
+channels rgba
+size 200
+name Blur21
+xpos 1907
+ypos -516
+}
+Dot {
+name Dot1
+xpos 1935
+ypos -445
+}
+set N3a78cf50 [stack 0]
+Colorspace {
+colorspace_out HSV
+name Colorspace2
+xpos 1907
+ypos -365
+}
+set N18ffe480 [stack 0]
+push $Na685570
+Dot {
+name Dot3
+xpos 1390
+ypos -561
+}
+set N10ef29b0 [stack 0]
+Dot {
+name Dot2
+xpos 1528
+ypos -561
+}
+set Na68d010 [stack 0]
+Dot {
+name Dot4
+xpos 1795
+ypos -561
+}
+Colorspace {
+colorspace_out HSV
+name Colorspace1
+xpos 1767
+ypos -368
+}
+set Na6beba0 [stack 0]
+ShuffleCopy {
+inputs 2
+red red
+green green
+alpha alpha2
+name ShuffleCopy1
+xpos 1767
+ypos -290
+}
+push $N18ffe480
+push $Na6beba0
+ShuffleCopy {
+inputs 2
+red red
+alpha alpha2
+name ShuffleCopy2
+xpos 1907
+ypos -290
+}
+Switch {
+inputs 2
+which 1
+name Switch2
+xpos 1767
+ypos -220
+}
+Colorspace {
+colorspace_in HSV
+name Colorspace3
+xpos 1767
+ypos -104
+}
+push $Na69ea90
+push $N10ef29b0
+Unpremult {
+name Unpremult2
+xpos 1362
+ypos -430
+}
+Dot {
+name Dot6
+xpos 1390
+ypos -311
+}
+push $N3a78cf50
+push $Na68d010
+Blur {
+channels rgba
+size 200
+name Blur10
+xpos 1500
+ypos -488
+}
+Unpremult {
+name Unpremult1
+xpos 1500
+ypos -426
+}
+Merge2 {
+inputs 2
+operation divide
+name Merge33
+xpos 1500
+ypos -360
+}
+Merge2 {
+inputs 2
+operation multiply
+name Merge34
+xpos 1500
+ypos -309
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+bbox B
+name Copy2
+xpos 1500
+ypos -241
+}
+Premult {
+name Premult1
+xpos 1500
+ypos -183
+}
+set N10eee1e0 [stack 0]
+Switch {
+inputs 2
+which 1
+name Switch1
+xpos 1500
+ypos -104
+}
+push $Na69ea90
+Dissolve {
+inputs 2+1
+which 0.3200001121
+name Dissolve1
+xpos 1500
+ypos -16
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+name Copy1
+xpos 1221
+ypos -16
+}
+set N3b79b700 [stack 0]
+Output {
+name Output1
+xpos 1221
+ypos 268
+}
+push $N10eee1e0
+push $N3b79b700
+Viewer {
+inputs 2
+frame_range 1014-1096
+fps 23.97602463
+name Viewer1
+xpos 1081
+ypos 58
+}
+end_group
