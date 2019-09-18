@@ -1,0 +1,204 @@
+set cut_paste_input [stack 0]
+version 11.2 v3
+push $cut_paste_input
+Group {
+ name fBloom
+ help "Blooms highlight edges. Use the Black Point sliders for threshold and the Fringe Size sliders to adjust width of bloom.\nhttp://intranet/depts/Compositing:Nuke:Gizmos:Bloom_FS"
+ tile_color 0xd89350ff
+ note_font "Bitstream Vera Sans"
+ selected true
+ xpos 63
+ ypos 1219
+ addUserKnob {20 User l Fringe}
+ addUserKnob {7 rblackPoint l "Red Black Point"}
+ addUserKnob {7 blurRed l "Red Fringe Size" R 0 100}
+ blurRed 1
+ addUserKnob {7 gblackPoint l "Green Black Point"}
+ addUserKnob {7 blurGreen l "Green Fringe Size" R 0 100}
+ blurGreen 1.5
+ addUserKnob {7 bblackPoint l "Blue Black Point"}
+ addUserKnob {7 blurBlue l "Blue Fringe Size" R 0 100}
+ blurBlue 4
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -320
+  ypos -244
+ }
+ Dot {
+  name Dot1
+  xpos -286
+  ypos -188
+ }
+set N91a3310 [stack 0]
+ Grade {
+  blackpoint {{rblackPoint i}}
+  name redBlack
+  xpos -320
+  ypos -116
+ }
+push $N91a3310
+ Dot {
+  name Dot2
+  xpos -176
+  ypos -188
+ }
+set N91b7e50 [stack 0]
+ Merge2 {
+  inputs 2
+  operation min
+  name Merge3
+  xpos -210
+  ypos -114
+ }
+ Blur {
+  channels {rgba.red -rgba.green -rgba.blue none}
+  size {{parent.blurRed i}}
+  name blurRed
+  xpos -210
+  ypos -77
+ }
+push $N91b7e50
+ Dot {
+  name Dot3
+  xpos -32
+  ypos -188
+ }
+set N91d9600 [stack 0]
+ ChannelMerge {
+  inputs 2
+  A rgba.red
+  operation max
+  B rgba.red
+  output rgba.red
+  name ChannelMerge1
+  xpos -66
+  ypos -84
+ }
+push $N91d9600
+ Dot {
+  name Dot4
+  xpos 81
+  ypos -188
+ }
+set N91ea1f0 [stack 0]
+ Grade {
+  blackpoint {{parent.gblackPoint i}}
+  name greenBlack1
+  xpos 47
+  ypos -116
+ }
+push $N91ea1f0
+ Dot {
+  name Dot5
+  xpos 191
+  ypos -188
+ }
+set N91fed50 [stack 0]
+ Merge2 {
+  inputs 2
+  operation min
+  name Merge1
+  xpos 157
+  ypos -116
+ }
+ Blur {
+  channels {-rgba.red rgba.green -rgba.blue none}
+  size {{parent.blurGreen i}}
+  name blurGreen
+  xpos 157
+  ypos -77
+ }
+push $N91fed50
+ Dot {
+  name Dot6
+  xpos 335
+  ypos -188
+ }
+set N9220520 [stack 0]
+ ChannelMerge {
+  inputs 2
+  A rgba.green
+  operation max
+  B rgba.green
+  output rgba.green
+  name ChannelMerge2
+  xpos 301
+  ypos -84
+ }
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 rgba.red
+  name Copy1
+  xpos 301
+  ypos 83
+ }
+push $N9220520
+ Dot {
+  name Dot7
+  xpos 466
+  ypos -188
+ }
+set N923eaf0 [stack 0]
+ Grade {
+  blackpoint {{parent.bblackPoint i}}
+  name blueBlack2
+  xpos 432
+  ypos -118
+ }
+push $N923eaf0
+ Dot {
+  name Dot8
+  xpos 576
+  ypos -188
+ }
+set N92534d0 [stack 0]
+ Merge2 {
+  inputs 2
+  operation min
+  name Merge2
+  xpos 542
+  ypos -118
+ }
+ Blur {
+  channels {-rgba.red -rgba.green rgba.blue none}
+  size {{parent.blurBlue i}}
+  name blurBlue
+  xpos 542
+  ypos -81
+ }
+push $N92534d0
+ Dot {
+  name Dot9
+  xpos 720
+  ypos -188
+ }
+ ChannelMerge {
+  inputs 2
+  A rgba.blue
+  operation max
+  B rgba.blue
+  output rgba.blue
+  name ChannelMerge3
+  xpos 686
+  ypos -88
+ }
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 rgba.red
+  from1 rgba.green
+  to1 rgba.green
+  name Copy2
+  xpos 686
+  ypos 83
+ }
+ Output {
+  name Output1
+  xpos 686
+  ypos 195
+ }
+end_group
+
