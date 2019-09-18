@@ -1,0 +1,140 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+ name assCamShake01
+ tile_color 0xff19b2ff
+ gl_color 0xff17ff
+ note_font "Comic Sans MS Bold Italic Bold Italic"
+ note_font_color 0xff00ff
+ selected true
+ xpos 1333
+ ypos 7659
+ addUserKnob {20 main t main}
+ addUserKnob {7 yFreq t "yFreq\t\t\t" R 0 10}
+ yFreq 0.3
+ addUserKnob {7 yAmp t yAmp R 0 10}
+ yAmp 12
+ addUserKnob {3 ySeed t ySeed}
+ addUserKnob {26 ""}
+ addUserKnob {7 xFreq t "xFreq\t\t" R 0 10}
+ xFreq 0.3
+ addUserKnob {7 xAmp t xAmp R 0 10}
+ xAmp 5
+ addUserKnob {3 xSeed t "xSeed\n"}
+ addUserKnob {26 ""}
+ addUserKnob {7 overscan t overscan R 1 5}
+ overscan 1.05
+ addUserKnob {7 motionBlur t "motionBlur\t\t\t" R 0 10}
+ addUserKnob {20 misc t misc}
+ addUserKnob {7 motionBlurShutter t motionBlurShutter R 0 10}
+ motionBlurShutter 0.5
+ addUserKnob {7 rotAmount t rotAmount R -5 5}
+ addUserKnob {22 fidgetSpinner T "nuke.debug(\"OHSHI\")" +STARTLINE}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 394
+  ypos -67
+ }
+ Dot {
+  name Dot1
+  xpos 428
+  ypos 219
+ }
+set N11e114c0 [stack 0]
+ Transform {
+  scale {{parent.overscan}}
+  center {{parent.determineSize.inputWidth/2} {parent.determineSize.inputHeight/2}}
+  shutteroffset centred
+  name Transform_overscan
+  xpos 394
+  ypos 290
+ }
+ Transform {
+  translate {{parent.randNum_X.randomValue} {parent.randNum_Y.random_value}}
+  rotate {{parent.randNum_rot.randomValue}}
+  center {{parent.determineSize.inputWidth/2} {parent.determineSize.inputHeight/2}}
+  motionblur {{parent.motionBlur}}
+  shutter {{parent.motionBlurShutter}}
+  shutteroffset centred
+  name Transform_shake
+  xpos 394
+  ypos 501
+ }
+ Output {
+  name Output1
+  xpos 394
+  ypos 849
+ }
+ NoOp {
+  inputs 0
+  name randNum_X
+  xpos 583
+  ypos 486
+  addUserKnob {20 User}
+  addUserKnob {7 seed t seed -STARTLINE R 0 10000}
+  addUserKnob {7 frequency t frequency R 0 10}
+  frequency {{parent.xFreq}}
+  addUserKnob {7 amplitude R -10 10}
+  amplitude {{parent.xAmp}}
+  addUserKnob {7 negamp t negamp R -10 10}
+  negamp {{amplitude*(-1)}}
+  addUserKnob {7 offset t offset R -10 10}
+  offset {{parent.xSeed}}
+  addUserKnob {26 ""}
+  addUserKnob {7 randomValue t randomValue}
+  randomValue {{random(seed,frame*frequency)*(amplitude-negamp)+negamp+offset}}
+ }
+push $N11e114c0
+ NoOp {
+  name determineSize
+  xpos 586
+  ypos 215
+  addUserKnob {20 User}
+  addUserKnob {7 inputWidth t inputWidth}
+  inputWidth {{input.width}}
+  addUserKnob {7 inputHeight t inputHeight}
+  inputHeight {{input.height}}
+ }
+ NoOp {
+  inputs 0
+  name randNum_Y
+  xpos 584
+  ypos 419
+  addUserKnob {20 RandNum}
+  addUserKnob {7 seed t "Seed value for random number." R 0 100000}
+  seed {{parent.ySeed}}
+  addUserKnob {7 frequency t "# of oscillations per frame." R 0 10}
+  frequency {{parent.yFreq}}
+  addUserKnob {7 amplitude t "range of the random values" R -10 10}
+  amplitude {{parent.yAmp}}
+  addUserKnob {7 negamp t "negamp\t\t\t\t" R -10 10}
+  negamp {{amplitude*(-1) x1373 -3.2}}
+  addUserKnob {7 offset t "amount to offset the random values. " R -5 5}
+  offset {{curve}}
+  addUserKnob {26 unnamed l "" +STARTLINE}
+  addUserKnob {7 random_value t "this is the random value to link to" R -10 10}
+  random_value {{(random(seed,frame*frequency)*(amplitude-negamp)+negamp+offset)}}
+ }
+ NoOp {
+  inputs 0
+  name randNum_rot
+  selected true
+  xpos 589
+  ypos 550
+  addUserKnob {20 User}
+  addUserKnob {7 seed t seed -STARTLINE R 0 10000}
+  addUserKnob {7 frequency t frequency R 0 10}
+  frequency {{parent.randNum_Y.frequency}}
+  addUserKnob {7 amplitude R -10 10}
+  amplitude {{parent.rotAmount}}
+  addUserKnob {7 negamp t negamp R -10 10}
+  negamp {{amplitude*(-1)}}
+  addUserKnob {7 offset t offset R -10 10}
+  addUserKnob {26 ""}
+  addUserKnob {7 randomValue t randomValue}
+  randomValue {{random(seed,frame*frequency)*(amplitude-negamp)+negamp+offset}}
+ }
+end_group
