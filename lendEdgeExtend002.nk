@@ -1,0 +1,340 @@
+set cut_paste_input [stack 0]
+version 11.2 v4
+Input {
+inputs 0
+name Matte
+label Mask
+selected true
+xpos -794
+ypos -335
+number 2
+}
+Invert {
+channels rgba
+name Invert1
+selected true
+xpos -794
+ypos -283
+}
+Blur {
+channels rgba
+name Blur1
+selected true
+xpos -794
+ypos -257
+}
+Constant {
+inputs 0
+channels motion
+color {0.5 0.5 0.5 0.5}
+name Constant1
+selected true
+xpos -40
+ypos -376
+}
+set N73efb130 [stack 0]
+Input {
+inputs 0
+name Lens
+selected true
+xpos -370
+ypos -802
+number 1
+}
+Keyer {
+operation "luminance key"
+name Keyer1
+selected true
+xpos -370
+ypos -757
+disable {{1-lensChoice i}}
+}
+Shuffle {
+red alpha
+green alpha
+blue alpha
+name Shuffle1
+selected true
+xpos -370
+ypos -695
+}
+Blur {
+channels rgba
+size 26.5
+crop false
+name Blur2
+selected true
+xpos -370
+ypos -658
+}
+set N764fa8e0 [stack 0]
+Dot {
+name Dot1
+selected true
+xpos -672
+ypos -660
+}
+Dot {
+name Dot2
+selected true
+xpos -672
+ypos -348
+}
+push $N73efb130
+push $N764fa8e0
+Transform {
+translate {{-strength/2 i} 0}
+center {960 540}
+black_outside false
+name Transform4
+selected true
+xpos -607
+ypos -512
+}
+push $N764fa8e0
+Transform {
+translate {{strength/2 i} 0}
+center {960 540}
+black_outside false
+name Transform1
+selected true
+xpos -480
+ypos -561
+}
+push $N764fa8e0
+Dot {
+name Dot3
+selected true
+xpos -342
+ypos -588
+}
+Expression {
+expr0 .5
+expr1 .5
+expr2 .5
+name Expression1
+selected true
+xpos -370
+ypos -514
+}
+set Ne341cd90 [stack 0]
+Add {
+inputs 1+1
+value 0.5
+name Add3
+selected true
+xpos -480
+ypos -520
+}
+Add {
+inputs 1+1
+value -0.5
+name Add4
+selected true
+xpos -480
+ypos -448
+}
+push $N764fa8e0
+Transform {
+translate {0 {-strength/2 i}}
+center {960 540}
+black_outside false
+name Transform6
+selected true
+xpos -147
+ypos -514
+}
+push $N764fa8e0
+Transform {
+translate {0 {strength/2 i}}
+center {960 540}
+black_outside false
+name Transform5
+selected true
+xpos -260
+ypos -558
+}
+push $Ne341cd90
+Add {
+inputs 1+1
+value 0.5
+name Add1
+selected true
+xpos -260
+ypos -520
+}
+Add {
+inputs 1+1
+value -0.5
+name Add2
+selected true
+xpos -260
+ypos -447
+}
+ShuffleCopy {
+inputs 2
+red red
+blue red
+alpha green2
+black red
+white green
+red2 blue
+green2 white
+out motion
+name ShuffleCopy1
+selected true
+xpos -370
+ypos -417
+}
+Keymix {
+inputs 3
+invertMask true
+name Keymix1
+selected true
+xpos -370
+ypos -352
+disable {{1-matte i x1 1}}
+}
+Keymix {
+inputs 3
+name Keymix2
+selected true
+xpos -370
+ypos -263
+}
+Add {
+value -0.5
+name Add5
+selected true
+xpos -370
+ypos -174
+}
+Multiply {
+channels motion
+value {{dispMult i}}
+name Multiply1
+selected true
+xpos -370
+ypos -136
+}
+Input {
+inputs 0
+name Src
+selected true
+xpos -32
+ypos -80
+}
+set N7f6c59e0 [stack 0]
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels motion
+name Copy3
+selected true
+xpos -366
+ypos -93
+}
+set N7f6ca300 [stack 0]
+push $N7f6ca300
+IDistort {
+channels {rgba.red -rgba.green -rgba.blue none}
+uv motion
+uv_scale {{"amt + (amt*(ChrmSep/10))"}}
+name IDistort2
+selected true
+xpos -472
+ypos 55
+addUserKnob {20 User}
+}
+IDistort {
+channels {-rgba.red rgba.green -rgba.blue none}
+uv motion
+uv_scale {{amt}}
+name IDistort3
+selected true
+xpos -472
+ypos 93
+addUserKnob {20 User}
+}
+IDistort {
+channels {-rgba.red -rgba.green rgba.blue none}
+uv motion
+uv_scale {{"amt + (amt*(-ChrmSep/10))" i}}
+name IDistort4
+selected true
+xpos -472
+ypos 131
+addUserKnob {20 User}
+}
+set N74ad5350 [stack 0]
+Viewer {
+inputs 2
+input_process false
+name Viewer1
+selected true
+xpos 70
+ypos 176
+}
+push $N74ad5350
+push $N7f6ca300
+IDistort {
+channels rgba
+uv motion
+uv_scale {{amt i}}
+name IDistort5
+label alpha
+selected true
+xpos -133
+ypos 85
+addUserKnob {20 User}
+}
+push $N7f6ca300
+IDistort {
+channels rgb
+uv motion
+uv_scale {{amt i}}
+name IDistort1
+selected true
+xpos -252
+ypos 84
+addUserKnob {20 User}
+}
+Switch {
+inputs 2
+which {{barf i}}
+name Switch2
+selected true
+xpos -252
+ypos 147
+}
+Switch {
+inputs 2
+which {{distChrma i}}
+name Switch1
+selected true
+xpos -362
+ypos 243
+}
+push $N7f6c59e0
+Dot {
+name Dot4
+selected true
+xpos 2
+ypos 315
+}
+Dissolve {
+inputs 2
+which 1
+name Dissolve1
+selected true
+xpos -362
+ypos 305
+}
+Output {
+name Output1
+selected true
+xpos -362
+ypos 435
+}
+
