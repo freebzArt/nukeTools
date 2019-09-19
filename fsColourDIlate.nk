@@ -1,0 +1,269 @@
+set cut_paste_input [stack 0]
+version 11.2 v4
+Input {
+ inputs 0
+ name InputMask
+ selected true
+ xpos 803
+ ypos -665
+ number 1
+}
+set Na01fa9c0 [stack 0]
+AddChannels {
+ channels alpha
+ name AddChannels2
+ selected true
+ xpos 463
+ ypos 551
+}
+Dot {
+ name Dot3
+ selected true
+ xpos 497
+ ypos 609
+}
+Input {
+ inputs 0
+ name InputRGB
+ selected true
+ xpos 1013
+ ypos -531
+}
+set Na01861a0 [stack 0]
+AddChannels {
+ channels alpha
+ name AddChannels1
+ selected true
+ xpos 393
+ ypos 461
+}
+Dot {
+ name Dot2
+ selected true
+ xpos 427
+ ypos 506
+}
+push $Na01fa9c0
+FilterErode {
+ channels alpha
+ size {{invertMatte==0?erodeMatte.w:-erodeMatte.w i} {invertMatte==0?erodeMatte.h:-erodeMatte.h i}}
+ name FilterErode1
+ selected true
+ xpos 803
+ ypos -621
+}
+Invert {
+ channels alpha
+ mix {{invertMatte i}}
+ name Invert2
+ selected true
+ xpos 803
+ ypos -563
+}
+Grade {
+ channels alpha
+ blackpoint {{"clamp(expandMatte, 0, 1)" i}}
+ whitepoint {{"clamp(1+expandMatte, 0, 1)" i}}
+ white_clamp true
+ name Grade1
+ selected true
+ xpos 803
+ ypos -505
+}
+Grade {
+ channels alpha
+ whitepoint 0.5
+ black_clamp false
+ white_clamp true
+ name Grade6
+ selected true
+ xpos 803
+ ypos -345
+}
+Dot {
+ name Dot1
+ selected true
+ xpos 837
+ ypos -287
+}
+set Nb84ed5e0 [stack 0]
+push $Na01861a0
+AddChannels {
+ channels alpha
+ name AddChannels3
+ selected true
+ xpos 1120
+ ypos -444
+}
+push $Na01861a0
+Shuffle {
+ alpha white
+ name Shuffle1
+ selected true
+ xpos 1013
+ ypos -458
+}
+Crop {
+ box {{InputRGB.bbox.x i x1001 542} {InputRGB.bbox.y i} {InputRGB.bbox.r i} {InputRGB.bbox.t i}}
+ name Crop3
+ selected true
+ xpos 1013
+ ypos -414
+}
+Switch {
+ inputs 2
+ which {{rgbIsPremult i}}
+ name Switch1
+ selected true
+ xpos 1013
+ ypos -370
+}
+Dot {
+ name Dot5
+ selected true
+ xpos 1047
+ ypos -326
+}
+set N90bce740 [stack 0]
+Merge2 {
+ inputs 2
+ operation stencil
+ bbox intersection
+ name Merge1
+ selected true
+ xpos 1013
+ ypos -292
+}
+push $Nb84ed5e0
+Dot {
+ name Dot4
+ selected true
+ xpos 837
+ ypos -253
+}
+push $N90bce740
+Dot {
+ name Dot6
+ selected true
+ xpos 946
+ ypos -326
+}
+Merge2 {
+ inputs 2
+ operation stencil
+ bbox B
+ name Merge3
+ selected true
+ xpos 912
+ ypos -258
+}
+Dot {
+ name Dot7
+ selected true
+ xpos 946
+ ypos -192
+}
+Switch {
+ inputs 2
+ which {{invertMatte i}}
+ name Switch2
+ selected true
+ xpos 1013
+ ypos -197
+}
+set Na078cec0 [stack 0]
+push $Na078cec0
+Blur {
+ channels rgba
+ size 25
+ name Blur1
+ selected true
+ xpos 1336
+ ypos -26
+}
+Unpremult {
+ name Unpremult2
+ selected true
+ xpos 1336
+ ypos 18
+}
+Expression {
+ expr3 a==0?0:1
+ name Expression1
+ selected true
+ xpos 1336
+ ypos 62
+}
+FilterErode {
+ channels alpha
+ size 12.5
+ filter gaussian
+ name FilterErode2
+ selected true
+ xpos 1336
+ ypos 106
+}
+Premult {
+ name Premult1
+ selected true
+ xpos 1336
+ ypos 164
+}
+Merge2 {
+ inputs 2
+ name Merge2
+ selected true
+ xpos 1336
+ ypos 208
+}
+Unpremult {
+ name Unpremult1
+ selected true
+ xpos 269
+ ypos 450
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ mix {{matteOutput==0?1:0 i}}
+ name Copy2
+ selected true
+ xpos 269
+ ypos 494
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ mix {{matteOutput==1?1:0}}
+ name Copy1
+ selected true
+ xpos 269
+ ypos 597
+}
+Expression {
+ expr3 a<=0.000001?0:1
+ mix {{matteOutput==3?1:0}}
+ name Expression8
+ selected true
+ xpos 269
+ ypos 771
+}
+push $Na01861a0
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ name ShuffleCopy1
+ selected true
+ xpos 594
+ ypos 771
+}
+Output {
+ name Output1
+ selected true
+ xpos 594
+ ypos 834
+}
