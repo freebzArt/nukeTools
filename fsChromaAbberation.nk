@@ -1,0 +1,107 @@
+set cut_paste_input [stack 0]
+version 11.2 v4
+Input {
+inputs 0
+name Input1
+selected true
+xpos 361
+ypos 306
+}
+set N7ab0890 [stack 0]
+push $N7ab0890
+GodRays {
+scale {{1+greenScale}}
+center {{width/2} {height/2}}
+name GodRaysG
+selected true
+xpos 427
+ypos 503
+}
+set N7ab44f0 [stack 0]
+push 0
+push $N7ab0890
+GodRays {
+scale {{1+redScale}}
+center {{width/2} {height/2}}
+name GodRaysR
+selected true
+xpos 265
+ypos 503
+}
+set N7ac1340 [stack 0]
+push $N7ab0890
+GodRays {
+scale {{1+blueScale}}
+center {{width/2} {height/2}}
+name GodRaysB
+selected true
+xpos 555
+ypos 509
+}
+set N1e9fb870 [stack 0]
+Blend {
+inputs 3+1
+channels alpha
+name Blend1
+selected true
+xpos 555
+ypos 792
+}
+push $N1e9fb870
+Dot {
+name Dot19
+selected true
+xpos 589
+ypos 724
+}
+push $N7ab44f0
+Dot {
+name Dot18
+selected true
+xpos 461
+ypos 658
+}
+push $N7ac1340
+Copy {
+inputs 2
+from0 rgba.green
+to0 rgba.green
+name Copy5
+selected true
+xpos 265
+ypos 646
+}
+Copy {
+inputs 2
+from0 rgba.blue
+to0 rgba.blue
+name Copy6
+selected true
+xpos 265
+ypos 712
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+name Copy7
+selected true
+xpos 265
+ypos 792
+}
+Blend {
+inputs 2
+weight0 {{mixBack}}
+weight1 {{(-weight0)+1}}
+name mixBack
+selected true
+xpos 361
+ypos 917
+}
+Output {
+name Output1
+selected true
+xpos 361
+ypos 981
+}
+
