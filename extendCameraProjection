@@ -5,3 +5,6 @@ EXTEND CAMERA PROJECTION VIEW
 or
 
 1/transform*nativeFocalLength
+
+
+Reformat what is going INTO projection just after work being done
