@@ -1,0 +1,132 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+ name Keychew4
+ selected true
+ xpos -416
+ ypos 586
+ addUserKnob {20 KeyChew}
+ addUserKnob {7 chew R -100 100}
+ chew 10
+ addUserKnob {7 soften R 0 50}
+ soften 10
+ addUserKnob {6 matteMult +STARTLINE}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -16
+  ypos -192
+ }
+ Dot {
+  name Dot1
+  xpos 18
+  ypos -90
+ }
+set N37119a30 [stack 0]
+ Dot {
+  name Dot2
+  xpos 155
+  ypos -61
+ }
+push $N37119a30
+ Invert {
+  channels alpha
+  name Invert1
+  xpos 55
+  ypos -42
+ }
+push $N37119a30
+ Switch {
+  inputs 2
+  which {{chew>=0?0:1 i}}
+  name Switch1
+  xpos -16
+  ypos 25
+ }
+ Blur {
+  channels alpha
+  size {{abs(chew) i}}
+  name Blur1
+  xpos -16
+  ypos 94
+ }
+ Multiply {
+  channels alpha
+  value {{max(Blur1.size*1.5,1) i}}
+  name Multiply1
+  xpos -16
+  ypos 153
+ }
+ Clamp {
+  channels alpha
+  minimum_enable false
+  name Clamp1
+  xpos -16
+  ypos 230
+ }
+ Gamma {
+  channels alpha
+  value {{relationCurve(abs(chew)) i}}
+  name Gamma1
+  xpos -16
+  ypos 278
+  addUserKnob {20 User}
+  addUserKnob {7 relationCurve}
+  relationCurve {{curve l 1 x5 0.95 0.8 x20 0.5 x40 0.3 x80 0.2 x200 0.1}}
+ }
+set N36eee060 [stack 0]
+ Merge2 {
+  inputs 2
+  operation minus
+  Achannels alpha
+  Bchannels alpha
+  output alpha
+  name Merge1
+  xpos 121
+  ypos 334
+ }
+ Clamp {
+  channels alpha
+  maximum_enable false
+  name Clamp2
+  xpos 121
+  ypos 376
+ }
+push $N36eee060
+ Switch {
+  inputs 2
+  which {{chew>=0?0:1 i}}
+  name Switch2
+  xpos -16
+  ypos 439
+ }
+ Blur {
+  channels alpha
+  size {{soften i}}
+  name Blur2
+  xpos -16
+  ypos 492
+ }
+set N391317f0 [stack 0]
+ Premult {
+  name Premult1
+  xpos 53
+  ypos 525
+ }
+push $N391317f0
+ Switch {
+  inputs 2
+  which {{matteMult i}}
+  name Switch3
+  selected true
+  xpos -16
+  ypos 580
+ }
+ Output {
+  name Output1
+  xpos -16
+  ypos 635
+ }
+end_group
