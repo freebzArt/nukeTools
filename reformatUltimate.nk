@@ -1,0 +1,388 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+ name Reformat_Ultimate
+ tile_color 0xaa7aacff
+ note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ selected true
+ xpos 39
+ ypos 203
+ addUserKnob {20 User}
+ addUserKnob {26 ""}
+ addUserKnob {26 instrucctions l "" +STARTLINE T "Keep bounding boxes live as long as possible. \nThis will help to be able to achieve repos, camera shakes, etc"}
+ addUserKnob {26 ""}
+ addUserKnob {6 enable_crop l "Enable crop" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 credits l "" +STARTLINE T "\n\n\n\nReformat_Ultimate v1.1   -   Alex Villabon"}
+}
+ StickyNote {
+  inputs 0
+  name StickyNote6
+  label "Error Message"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 20
+  xpos 2564
+  ypos -494
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote2
+  label "Alexa Mini\n3424x2202"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 20
+  xpos 711
+  ypos -505
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "Sony Venice\n4096*3024"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 20
+  xpos 430
+  ypos -505
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote5
+  label "HD Offline\n1920*1080"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 20
+  xpos 2307
+  ypos -505
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote3
+  label "CG for SONY shots\nWith Overscan\n4506*3326"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 20
+  xpos 948
+  ypos -515
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote4
+  label "CG for SONY shots\nWith Overscan\nHalf Res\n2253*1663"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 20
+  xpos 1278
+  ypos -526
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote7
+  label "CG for ALEXA MINI shots\nWith Overscan\n3766*2422"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 20
+  xpos 1577
+  ypos -515
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote8
+  label "CG for ALEXA MINI shots\nWith Overscan\nHalf Res\n1883*1211"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 20
+  xpos 1907
+  ypos -526
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color {0.1 0 0 0}
+  format "1920 1080 0 0 1920 1080 1 HD"
+  name Constant1
+  xpos 2600
+  ypos -297
+ }
+ Text2 {
+  font_size_toolbar 50
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "Input doesn't match any of the show's formats"
+  old_message {{73 110 112 117 116 32 100 111 101 115 110 39 116 32 109 97 116 99 104 32 97 110 121 32 111 102 32 116 104 101 32 115 104 111 119 39 115 32 102 111 114 109 97 116 115}
+    }
+  box {430 538.5 1474 589.5}
+  transforms {{0 2}
+    }
+  font_size_values {{0 50 1 50 2 50 3 50 4 50 5 50 6 50 7 50 8 50 9 50 10 50 11 50 12 50 13 50 14 50 15 50 16 50 17 50 18 50 19 50 20 50 21 50 22 50 23 50 24 50 25 50 26 50 27 50 28 50 29 50 30 50 31 50 32 50 33 50 34 50 35 50 36 50 37 50 38 50 39 50 40 50 41 50 42 50 43 50 44 50 0 50 1 50 2 50 3 50 4 50 5 50 6 50 7 50 8 50 9 50 10 50 11 50 12 50 13 50 14 50 15 50 16 50 17 50 18 50 19 50 20 50 21 50 22 50 23 50 24 50 25 50 26 50 27 50 28 50 29 50 30 50 31 50 32 50 33 50 34 50 35 50 36 50 37 50 38 50 39 50 40 50 41 50 42 50 43 50 44 50}
+    }
+  font_size 50
+  scale {1 1}
+  cursor_initialised true
+  initial_cursor_position {{430 589.5}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Text1
+  xpos 2600
+  ypos -178
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove3
+  xpos 2600
+  ypos 14
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 1500
+  ypos -850
+ }
+set Nf1cf510 [stack 0]
+ Reformat {
+  format "2580 2160 0 0 2580 2160 2 toyota_default"
+  box_width 2580
+  box_height 2160
+  box_pixel_aspect 2
+  black_outside true
+  name Reformat4
+  label OFFLINE
+  xpos 2325
+  ypos -286
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove2
+  xpos 2325
+  ypos 14
+ }
+push $Nf1cf510
+ Reformat {
+  type scale
+  scale 2
+  name Reformat11
+  xpos 1995
+  ypos -274
+ }
+ Reformat {
+  format "3424 2202 0 0 3424 2202 2 "
+  resize none
+  pbb true
+  name Reformat1
+  label "To ALEXA Mini native res"
+  xpos 1995
+  ypos -214
+ }
+ Reformat {
+  type "to box"
+  box_width 2580
+  box_height 2160
+  box_pixel_aspect 2
+  resize none
+  pbb true
+  name Reformat9
+  label "DRONE SHOTS"
+  xpos 1995
+  ypos -136
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove6
+  xpos 1995
+  ypos 14
+ }
+push $Nf1cf510
+ Reformat {
+  format "3424 2202 0 0 3424 2202 2 "
+  resize none
+  pbb true
+  name Reformat16
+  label "To ALEXA Mini native res"
+  xpos 1665
+  ypos -286
+ }
+ Reformat {
+  type "to box"
+  box_width 2580
+  box_height 2160
+  box_pixel_aspect 2
+  resize none
+  pbb true
+  name Reformat15
+  label "DRONE SHOTS"
+  xpos 1665
+  ypos -208
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove5
+  xpos 1665
+  ypos 14
+ }
+push $Nf1cf510
+ Reformat {
+  type scale
+  scale 2
+  name Reformat2
+  xpos 1335
+  ypos -274
+ }
+ Reformat {
+  format "4096 3024 0 0 4096 3024 2 "
+  resize none
+  pbb true
+  name Reformat3
+  label "To SONY native res"
+  xpos 1335
+  ypos -214
+ }
+ Reformat {
+  type "to box"
+  box_width 3612
+  box_height 3024
+  box_pixel_aspect 2
+  resize none
+  pbb true
+  name Reformat7
+  label "SONY CAM REFORMAT"
+  xpos 1335
+  ypos -136
+ }
+ Reformat {
+  type "to box"
+  box_width 2580
+  box_height 2160
+  box_pixel_aspect 2
+  pbb true
+  name Reformat8
+  label "TOYOTA DELIVERY"
+  xpos 1335
+  ypos -64
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove1
+  xpos 1335
+  ypos 14
+ }
+push $Nf1cf510
+ Reformat {
+  format "4096 3024 0 0 4096 3024 2 "
+  resize none
+  pbb true
+  name Reformat27
+  label "To SONY native res"
+  xpos 1005
+  ypos -286
+ }
+ Reformat {
+  type "to box"
+  box_width 3612
+  box_height 3024
+  box_pixel_aspect 2
+  resize none
+  pbb true
+  name Reformat6
+  label "SONY CAM REFORMAT"
+  xpos 1005
+  ypos -208
+ }
+ Reformat {
+  type "to box"
+  box_width 2580
+  box_height 2160
+  box_pixel_aspect 2
+  pbb true
+  name Reformat5
+  label "TOYOTA DELIVERY"
+  xpos 1005
+  ypos -136
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove32
+  xpos 1005
+  ypos 14
+ }
+push $Nf1cf510
+ Reformat {
+  type "to box"
+  box_width 2580
+  box_height 2160
+  box_pixel_aspect 2
+  resize none
+  pbb true
+  name Reformat30
+  label "DRONE SHOTS"
+  xpos 730
+  ypos -280
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove31
+  xpos 730
+  ypos 14
+ }
+push $Nf1cf510
+ Reformat {
+  type "to box"
+  box_width 3612
+  box_height 3024
+  box_pixel_aspect 2
+  resize none
+  pbb true
+  name Reformat28
+  label "SONY CAM REFORMAT"
+  xpos 455
+  ypos -280
+ }
+ Reformat {
+  type "to box"
+  box_width 2580
+  box_height 2160
+  box_pixel_aspect 2
+  pbb true
+  name Reformat29
+  label "TOYOTA DELIVERY"
+  selected true
+  xpos 455
+  ypos -208
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove30
+  xpos 455
+  ypos 14
+ }
+ Switch {
+  inputs 8
+  which {{"\[python -execlocal x\\ =\\ nuke.toNode('Input1').height()\\n\\nif\\ x\\ ==\\ 3024:\\n\\n\\ \\ \\ \\ ret\\ =\\ 0\\n\\nelif\\ x\\ ==\\ 2202:\\n\\n\\ \\ \\ \\ ret\\ =\\ 1\\n\\nelif\\ x\\ ==\\ 3326:\\n\\n\\ \\ \\ \\ ret\\ =\\ 2\\n\\nelif\\ x\\ ==\\ 1663:\\n\\n\\ \\ \\ \\ ret\\ =\\ 3\\n\\nelif\\ x\\ ==\\ 2422:\\n\\n\\ \\ \\ \\ ret\\ =\\ 4\\n\\nelif\\ x\\ ==\\ 1211:\\n\\n\\ \\ \\ \\ ret\\ =\\ 5\\n\\nelif\\ x\\ ==\\ 1080:\\n\\n\\ \\ \\ \\ ret\\ =\\ 6\\n\\nelse:\\n\\n\\ \\ \\ \\ ret\\ =\\ 7\\ ]"}}
+  name Switch2
+  label "\[value which]"
+  xpos 1500
+  ypos 224
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  crop false
+  name Crop_
+  xpos 1500
+  ypos 302
+  disable {{!parent.enable_crop}}
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove4
+  xpos 1500
+  ypos 350
+ }
+ Output {
+  name Output1
+  xpos 1500
+  ypos 471
+ }
+end_group
