@@ -1,0 +1,263 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+ name SuperTw
+ selected true
+ xpos 18
+ ypos 2426
+ addUserKnob {20 SuperTw}
+ addUserKnob {4 a l Viewer M {Oflow Kronos TimeWarp FrameHold "" "" "" "" "" "" ""}}
+ a Kronos
+ addUserKnob {4 b l Render M {Oflow Kronos TimeWarp FrameHold "" ""}}
+ b Kronos
+ addUserKnob {7 fr l frame R 1 1000}
+ fr {{curve l x1011 1009 k x1022 1021.5 x1036 1036.8 l x1045 1047}}
+ addUserKnob {6 fra_num l "Frame Number" +STARTLINE}
+ addUserKnob {26 t l "" +STARTLINE T "The frame number is not going to be rendered."}
+ addUserKnob {20 Oflow}
+ addUserKnob {41 useGPUIfAvailable l "Use GPU if available" T OFlow1.useGPUIfAvailable}
+ addUserKnob {26 ""}
+ addUserKnob {41 input.first l "Input Range" T OFlow1.input.first}
+ addUserKnob {41 input.last l "" -STARTLINE T OFlow1.input.last}
+ addUserKnob {41 resetInputRange l Reset T OFlow1.resetInputRange}
+ addUserKnob {41 retimedChannels l Channels T OFlow1.retimedChannels}
+ addUserKnob {41 interpolation l Method T OFlow1.interpolation}
+ addUserKnob {41 timing2 l Timing T OFlow1.timing2}
+ addUserKnob {41 timingOutputSpeed l "Output Speed" T OFlow1.timingOutputSpeed}
+ addUserKnob {41 timingInputSpeed l "Input Speed" T OFlow1.timingInputSpeed}
+ addUserKnob {41 timingFrame2 l Frame T OFlow1.timingFrame2}
+ addUserKnob {41 vectorDetailLocal l "Vector Detail" T OFlow1.vectorDetailLocal}
+ addUserKnob {41 smoothnessLocal l Smoothness T OFlow1.smoothnessLocal}
+ addUserKnob {41 resampleType l Resampling T OFlow1.resampleType}
+ addUserKnob {20 Shutter n 2}
+ addUserKnob {41 shutterSamples l "Shutter Samples" T OFlow1.shutterSamples}
+ addUserKnob {41 shutterTime l "Shutter Time" T OFlow1.shutterTime}
+ addUserKnob {26 "" l " "}
+ addUserKnob {41 autoShutterTime l "Automatic Shutter Time" T OFlow1.autoShutterTime}
+ addUserKnob {20 "" n -1}
+ addUserKnob {20 Advanced n 2}
+ addUserKnob {41 flickerCompensation l "Flicker Compensation" T OFlow1.flickerCompensation}
+ addUserKnob {20 Tolerances n 2}
+ addUserKnob {41 weightRed l "Weight Red" T OFlow1.weightRed}
+ addUserKnob {41 weightGreen l "Weight Green" T OFlow1.weightGreen}
+ addUserKnob {41 weightBlue l "Weight Blue" T OFlow1.weightBlue}
+ addUserKnob {20 "" n -1}
+ addUserKnob {41 vectorSpacing l "Vector Spacing" T OFlow1.vectorSpacing}
+ addUserKnob {41 showVectors l "Overlay Vectors" T OFlow1.showVectors}
+ addUserKnob {20 "" n -1}
+ addUserKnob {20 Kronos}
+ addUserKnob {41 useGPUIfAvailable_1 l "Use GPU if available" T Kronos1.useGPUIfAvailable}
+ addUserKnob {26 ""}
+ addUserKnob {41 input.first_1 l "Input Range" T Kronos1.input.first}
+ addUserKnob {41 input.last_1 l "" -STARTLINE T Kronos1.input.last}
+ addUserKnob {41 resetInputRange_1 l Reset T Kronos1.resetInputRange}
+ addUserKnob {41 retimedChannels_1 l Channels T Kronos1.retimedChannels}
+ addUserKnob {41 interpolation_1 l Method T Kronos1.interpolation}
+ addUserKnob {41 timing2_1 l Timing T Kronos1.timing2}
+ addUserKnob {41 timingOutputSpeed_1 l "Output Speed" T Kronos1.timingOutputSpeed}
+ addUserKnob {41 timingInputSpeed_1 l "Input Speed" T Kronos1.timingInputSpeed}
+ addUserKnob {41 timingFrame2_1 l Frame T Kronos1.timingFrame2}
+ addUserKnob {41 motionEstimation l Motion T Kronos1.motionEstimation}
+ addUserKnob {41 vectorDetailLocal_1 l "Vector Detail" T Kronos1.vectorDetailLocal}
+ addUserKnob {41 smoothnessLocal_1 l Smoothness T Kronos1.smoothnessLocal}
+ addUserKnob {41 vectorDetailReg l "Vector Detail" T Kronos1.vectorDetailReg}
+ addUserKnob {41 strengthReg l Strength T Kronos1.strengthReg}
+ addUserKnob {41 resampleType_1 l Resampling T Kronos1.resampleType}
+ addUserKnob {20 Shutter_1 l Shutter n 2}
+ addUserKnob {41 shutterSamples_1 l "Shutter Samples" T Kronos1.shutterSamples}
+ addUserKnob {41 shutterTime_1 l "Shutter Time" T Kronos1.shutterTime}
+ addUserKnob {26 "" l " "}
+ addUserKnob {41 autoShutterTime_1 l "Automatic Shutter Time" T Kronos1.autoShutterTime}
+ addUserKnob {20 "" n -1}
+ addUserKnob {41 output l Output T Kronos1.output}
+ addUserKnob {41 matteChannel l "Matte Channel" T Kronos1.matteChannel}
+ addUserKnob {20 Advanced_1 l Advanced n 2}
+ addUserKnob {41 flickerCompensation_1 l "Flicker Compensation" T Kronos1.flickerCompensation}
+ addUserKnob {41 legacyModeNuke9 l "Legacy Mode" T Kronos1.legacyModeNuke9}
+ addUserKnob {20 Tolerances_1 l Tolerances n 2}
+ addUserKnob {41 weightRed_1 l "Weight Red" T Kronos1.weightRed}
+ addUserKnob {41 weightGreen_1 l "Weight Green" T Kronos1.weightGreen}
+ addUserKnob {41 weightBlue_1 l "Weight Blue" T Kronos1.weightBlue}
+ addUserKnob {20 "" n -1}
+ addUserKnob {41 vectorSpacing_1 l "Vector Spacing" T Kronos1.vectorSpacing}
+ addUserKnob {41 showVectors_1 l "Overlay Vectors" T Kronos1.showVectors}
+ addUserKnob {20 "" n -1}
+ addUserKnob {20 TimeWarp}
+ addUserKnob {41 lookup l "input frame" T TimeWarp1.lookup}
+ addUserKnob {41 length l "input length" T TimeWarp1.length}
+ addUserKnob {41 time T TimeWarp1.time}
+ addUserKnob {41 filter T TimeWarp1.filter}
+ addUserKnob {20 FrameHold}
+ addUserKnob {41 first_frame l "first frame" T FrameHold1.first_frame}
+ addUserKnob {41 increment T FrameHold1.increment}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+  ypos -241
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  reformat true
+  crop false
+  name Crop3
+  xpos 0
+  ypos -178
+ }
+set Nf7526a0 [stack 0]
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[frame]"
+  old_message {{49 48 48 54}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {0 0 {parent.Crop3.box.r} {parent.Crop3.box.t x63 1080}}
+  transforms {{0 2}
+    }
+  cursor_position 6
+  scale {1 1}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: 0 items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Text1
+  xpos 116
+  ypos -130
+  disable {{"!\$gui"}}
+ }
+set Nf75cd50 [stack 0]
+ Transform {
+  center {960 540}
+  shutteroffset centred
+  name Transform1
+  xpos 116
+  ypos -58
+ }
+ Dot {
+  name Dot2
+  xpos 144
+  ypos -26
+ }
+push $Nf7526a0
+ Merge2 {
+  inputs 2
+  name Merge1
+  selected true
+  xpos -6
+  ypos -30
+  disable {{!parent.fra_num x63 0}}
+ }
+set Nf792650 [stack 0]
+ Dot {
+  name Dot1
+  xpos 28
+  ypos 19
+ }
+set Nf7a1e00 [stack 0]
+ FrameHold {
+  first_frame {{parent.FrameHold2.knob.first_frame i}}
+  name FrameHold1
+  xpos 353
+  ypos 123
+  cached true
+ }
+set Nf7a68b0 [stack 0]
+push $Nf7a1e00
+ TimeWarp {
+  lookup {{parent.FrameHold2.knob.first_frame i C x1 1 x100 100}}
+  time ""
+  name TimeWarp1
+  xpos 226
+  ypos 129
+ }
+set Nf7afa50 [stack 0]
+push $Nf7a1e00
+ Kronos {
+  input.first 981
+  input.last 1077
+  retimedChannels all
+  timing2 Frame
+  timingFrame2 {{parent.FrameHold2.knob.first_frame i}}
+  showLegacyMode false
+  motionEstimation Regularized
+  legacyModeNuke9 false
+  name Kronos1
+  xpos 114
+  ypos 121
+ }
+set Nf7bef40 [stack 0]
+push $Nf7a1e00
+ OFlow2 {
+  input.last 1000
+  timing2 Frame
+  timingFrame2 {{parent.FrameHold2.knob.first_frame i}}
+  name OFlow1
+  xpos 0
+  ypos 128
+ }
+set N113ffd30 [stack 0]
+ Switch {
+  inputs 4
+  which {{parent.b x52 0}}
+  name Switch1
+  xpos 130
+  ypos 273
+ }
+ Dot {
+  name Dot3
+  xpos 158
+  ypos 388
+ }
+push $Nf7a68b0
+push $Nf7afa50
+push $Nf7bef40
+push $N113ffd30
+ Switch {
+  inputs 4
+  which {{parent.a}}
+  name Switch2
+  xpos 0
+  ypos 273
+ }
+ Switch {
+  inputs 2
+  which 1
+  name Switch3
+  xpos 0
+  ypos 390
+  disable {{"\$gui"}}
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 482
+ }
+push $N113ffd30
+push $Nf75cd50
+push $Nf792650
+ Viewer {
+  inputs 3
+  frame_range 1001-1001
+  fps 29.97002983
+  name Viewer1
+  xpos 257
+  ypos -121
+ }
+ FrameHold {
+  inputs 0
+  first_frame {{parent.fr}}
+  name FrameHold2
+  xpos 480
+  ypos -93
+  cached true
+ }
+end_group
