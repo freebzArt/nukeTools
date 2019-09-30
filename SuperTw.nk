@@ -4,15 +4,15 @@ push $cut_paste_input
 Group {
  name SuperTw
  selected true
- xpos 18
- ypos 2426
+ xpos 79
+ ypos -1011
  addUserKnob {20 SuperTw}
  addUserKnob {4 a l Viewer M {Oflow Kronos TimeWarp FrameHold "" "" "" "" "" "" ""}}
  a Kronos
  addUserKnob {4 b l Render M {Oflow Kronos TimeWarp FrameHold "" ""}}
  b Kronos
  addUserKnob {7 fr l frame R 1 1000}
- fr {{curve l x1011 1009 k x1022 1021.5 x1036 1036.8 l x1045 1047}}
+ fr 1110
  addUserKnob {6 fra_num l "Frame Number" +STARTLINE}
  addUserKnob {26 t l "" +STARTLINE T "The frame number is not going to be rendered."}
  addUserKnob {20 Oflow}
@@ -106,7 +106,7 @@ Group {
   xpos 0
   ypos -178
  }
-set Nf7526a0 [stack 0]
+set Nfbfeffa0 [stack 0]
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -134,7 +134,7 @@ set Nf7526a0 [stack 0]
   ypos -130
   disable {{"!\$gui"}}
  }
-set Nf75cd50 [stack 0]
+set N10163d50 [stack 0]
  Transform {
   center {960 540}
   shutteroffset centred
@@ -147,7 +147,7 @@ set Nf75cd50 [stack 0]
   xpos 144
   ypos -26
  }
-push $Nf7526a0
+push $Nfbfeffa0
  Merge2 {
   inputs 2
   name Merge1
@@ -156,37 +156,37 @@ push $Nf7526a0
   ypos -30
   disable {{!parent.fra_num x63 0}}
  }
-set Nf792650 [stack 0]
+set Nfbfcc340 [stack 0]
  Dot {
   name Dot1
   xpos 28
   ypos 19
  }
-set Nf7a1e00 [stack 0]
+set N61c47f70 [stack 0]
  FrameHold {
-  first_frame {{parent.FrameHold2.knob.first_frame i}}
+  first_frame {{parent.FrameHold2.knob.first_frame}}
   name FrameHold1
   xpos 353
   ypos 123
   cached true
  }
-set Nf7a68b0 [stack 0]
-push $Nf7a1e00
+set N101348d0 [stack 0]
+push $N61c47f70
  TimeWarp {
-  lookup {{parent.FrameHold2.knob.first_frame i C x1 1 x100 100}}
+  lookup {{parent.FrameHold2.knob.first_frame C x1 1 x100 100}}
   time ""
   name TimeWarp1
   xpos 226
   ypos 129
  }
-set Nf7afa50 [stack 0]
-push $Nf7a1e00
+set N60b5d330 [stack 0]
+push $N61c47f70
  Kronos {
   input.first 981
   input.last 1077
   retimedChannels all
   timing2 Frame
-  timingFrame2 {{parent.FrameHold2.knob.first_frame i}}
+  timingFrame2 {{parent.FrameHold2.knob.first_frame}}
   showLegacyMode false
   motionEstimation Regularized
   legacyModeNuke9 false
@@ -194,17 +194,17 @@ push $Nf7a1e00
   xpos 114
   ypos 121
  }
-set Nf7bef40 [stack 0]
-push $Nf7a1e00
+set Nfbfce830 [stack 0]
+push $N61c47f70
  OFlow2 {
   input.last 1000
   timing2 Frame
-  timingFrame2 {{parent.FrameHold2.knob.first_frame i}}
+  timingFrame2 {{parent.FrameHold2.knob.first_frame}}
   name OFlow1
   xpos 0
   ypos 128
  }
-set N113ffd30 [stack 0]
+set N9c7c7020 [stack 0]
  Switch {
   inputs 4
   which {{parent.b x52 0}}
@@ -217,10 +217,10 @@ set N113ffd30 [stack 0]
   xpos 158
   ypos 388
  }
-push $Nf7a68b0
-push $Nf7afa50
-push $Nf7bef40
-push $N113ffd30
+push $N101348d0
+push $N60b5d330
+push $Nfbfce830
+push $N9c7c7020
  Switch {
   inputs 4
   which {{parent.a}}
@@ -241,9 +241,9 @@ push $N113ffd30
   xpos 0
   ypos 482
  }
-push $N113ffd30
-push $Nf75cd50
-push $Nf792650
+push $N9c7c7020
+push $N10163d50
+push $Nfbfcc340
  Viewer {
   inputs 3
   frame_range 1001-1001
