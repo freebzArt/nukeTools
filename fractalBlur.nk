@@ -1,0 +1,119 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+name Group5
+help http://intranet/depts/Compositing:Nuke:Gizmos:FracktalBlur_FS
+selected true
+xpos 48530
+ypos 520
+addUserKnob {20 User}
+addUserKnob {41 channels T IDistort1.channels}
+addUserKnob {41 uv_scale l "distortion size" T IDistort1.uv_scale}
+addUserKnob {41 size l "distortion scale" T U.size}
+addUserKnob {41 zoffset l animation/seed T U.zoffset}
+addUserKnob {41 filter T IDistort1.filter}
+addUserKnob {41 octaves T U.octaves}
+addUserKnob {20 "" l Transform}
+addUserKnob {41 transform T U.transform}
+addUserKnob {41 translate T U.translate}
+addUserKnob {41 rotate T U.rotate}
+addUserKnob {41 scale T U.scale}
+addUserKnob {41 skew +INVISIBLE T U.skew}
+addUserKnob {41 center T U.center}
+addUserKnob {41 xrotate T U.xrotate}
+addUserKnob {41 yrotate T U.yrotate}
+}
+Input {
+inputs 0
+name Input1
+xpos -113
+ypos -220
+}
+set N5c616700 [stack 0]
+AdjBBox {
+numpixels {{max(0,IDistort1.uv_scale.main) i} {max(0,parent.IDistort1.uv_scale.main) i}}
+name AdjBBox1
+xpos -22
+ypos -76
+}
+push $N5c616700
+add_layer {tempDistortion tempDistortion.u tempDistortion.v}
+Noise {
+output {tempDistortion.u -tempDistortion.v}
+cliptype none
+replace true
+size 5
+octaves 8
+gamma 1
+center {960 540}
+name U
+xpos 80
+ypos -156
+}
+set Ne40e7240 [stack 0]
+Noise {
+output {-tempDistortion.u tempDistortion.v}
+cliptype none
+replace true
+size {{U.size.main} {U.size.main}}
+zoffset {{U.zoffset.main+111}}
+octaves {{U.octaves.main}}
+gamma 1
+translate {{U.translate.main} {U.translate.main}}
+rotate {{U.rotate.main}}
+scale {{U.scale.main} {U.scale.main}}
+skewX {{U.skewX.main}}
+center {{U.center.main} {U.center.main}}
+xrotate {{U.xrotate.main}}
+yrotate {{U.yrotate.main}}
+name V
+xpos 80
+ypos -90
+}
+Clamp {
+name Clamp2
+xpos 80
+ypos -42
+}
+CopyBBox {
+inputs 2
+name CopyBBox1
+xpos 83
+ypos 37
+}
+push $N5c616700
+Copy {
+inputs 2
+channels tempDistortion
+name Copy1
+selected true
+xpos -113
+ypos 47
+}
+IDistort {
+uv tempDistortion
+uv_offset 0.5
+uv_scale 10
+name IDistort1
+xpos -113
+ypos 151
+}
+Remove {
+channels tempDistortion
+name Remove1
+xpos -112
+ypos 198
+}
+Output {
+name Output1
+xpos -112
+ypos 301
+}
+push $Ne40e7240
+Shuffle {
+name Shuffle1
+xpos 80
+ypos 133
+}
+end_group
