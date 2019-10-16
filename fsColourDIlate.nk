@@ -2,10 +2,10 @@ set cut_paste_input [stack 0]
 version 11.1 v5
 push $cut_paste_input
 Group {
-name Group2
+name fsColorDilate
 selected true
-xpos -2383
-ypos 2280
+xpos -2447
+ypos 2336
 addUserKnob {20 User}
 addUserKnob {7 blurSpread t blurSpread R 0 50}
 blurSpread 2
