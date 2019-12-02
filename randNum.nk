@@ -1,0 +1,21 @@
+set cut_paste_input [stack 0]
+version 11.3 v5
+push $cut_paste_input
+NoOp {
+ name randomNum1
+ label "\[value randNum]"
+ selected true
+ xpos 3013
+ ypos -1191
+ addUserKnob {20 User}
+ addUserKnob {7 randNum t randNum R 0 100}
+ randNum {{(random(seed,frame*frequency)*amplitude)+base}}
+ addUserKnob {7 amplitude t "\t\t\t" R 0 50}
+ amplitude 0.3
+ addUserKnob {7 frequency R 0 10}
+ frequency 0.2
+ addUserKnob {7 base R 0 50}
+ base 0.8
+ addUserKnob {7 seed t seed R 0 10000}
+ seed 7800
+}
