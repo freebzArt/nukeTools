@@ -1,0 +1,27 @@
+set cut_paste_input [stack 0]
+version 10.0 v1
+push $cut_paste_input
+ContactSheet {
+ width 2304
+ height 778
+ rows 4
+ columns 9
+ roworder TopBottom
+ colorder RightLeft
+ startframe 1
+ endframe 1
+ name ContactSheetMy
+ selected true
+ xpos -3395
+ ypos 272
+ addUserKnob {20 User}
+ addUserKnob {22 get T "n = nuke.thisNode()\nknobs = n.knobs()\nfor knob in knobs:\n    if \"dude\" in knob:\n        n.removeKnob(knobs\[ knob ])\n\ninputs = \[]\ndudes = 0\ncount = 1\nvariations = \{\}\n\nwhile n.input(dudes) is not None:\n     inputs.append(n.input(dudes))\n     dudes = dudes + 1\n\n\n\nwidth = inputs\[0].width()\nheight = inputs\[0].height()\n\nwhile count < dudes+1:\n    val = dudes % count\n    if val == 0:\n        rows = int(dudes/count)\n        columns = int(count)\n    \n        m = nuke.PyScript_Knob(\"dude\"+str(count),str(rows) + \"X\" + str(columns),\"\"\" \n\nrowss  =int(nuke.thisKnob().label().rpartition(\"X\")\[0])\nn\['rows'].setValue(rowss)\ncolumnss = int(nuke.thisKnob().label().rpartition(\"X\")\[2])\nn\['columns'].setValue(columnss)\nwidths = int(nuke.thisKnob().label().rpartition(\"X\")\[2])*inputs\[0].width()\nn\['width'].setValue(widths)\nheights = int(nuke.thisKnob().label().rpartition(\"X\")\[0])*height\nn\['height'].setValue(heights)\n\"\"\")\n        n.addKnob(m)\n    count =count + 1" +STARTLINE}
+ addUserKnob {22 addRow l "add Row" T "\nimport math\nn = nuke.thisNode()\ninputs = \[]\ndudes = 0\ncount = 1\nvariations = \{\}\n\nwhile n.input(dudes) is not None:\n     inputs.append(n.input(dudes))\n     dudes = dudes + 1\n\n\nrows = n\['rows'].value()\ncolumns = n\['columns'].value()\nwidth = n\['width'].value()/columns\nheight = n\['height'].value()/rows\n\nrows = rows+1\n\nif dudes % rows == 0: \n   columns = dudes/rows\nelse:\n    columns = dudes/rows+1\n\ncolumns = math.floor(columns)\n\n\nn\['rows'].setValue(rows)\nn\['columns'].setValue(columns)\nn\['width'].setValue(width*columns)\nn\['height'].setValue(height*rows)" +STARTLINE}
+ addUserKnob {22 addColumn l "add column" -STARTLINE T "import math\nn = nuke.thisNode()\ninputs = \[]\ndudes = 0\ncount = 1\nvariations = \{\}\n\nwhile n.input(dudes) is not None:\n     inputs.append(n.input(dudes))\n     dudes = dudes + 1\n\n\nrows = n\['rows'].value()\ncolumns = n\['columns'].value()\nwidth = n\['width'].value()/columns\nheight = n\['height'].value()/rows\n\ncolumns = columns+1\n\nif dudes % columns == 0: \n   rows = dudes/columns\nelse:\n    rows = dudes/columns+1\n\nrows = math.floor(rows)\n\n\nn\['rows'].setValue(rows)\nn\['columns'].setValue(columns)\nn\['width'].setValue(width*columns)\nn\['height'].setValue(height*rows)"}
+ addUserKnob {26 ""}
+ addUserKnob {22 downres T "\nn = nuke.thisNode()\n\nfactor = n\['Downres'].value()\nwidth = n\['width'].value()\nheight = n\['height'].value()\n\n\n\nn\['width'].setValue(width/factor)\nn\['height'].setValue(height/factor)" +STARTLINE}
+ addUserKnob {22 upres -STARTLINE T "\nn = nuke.thisNode()\n\nfactor = n\['Downres'].value()\nwidth = n\['width'].value()\nheight = n\['height'].value()\n\n\n\nn\['width'].setValue(width*factor)\nn\['height'].setValue(height*factor)"}
+ addUserKnob {7 Downres l factor t "the resolution will be devided by this number" -STARTLINE R 0.0001 10}
+ Downres 2
+ addUserKnob {26 ""}
+}
