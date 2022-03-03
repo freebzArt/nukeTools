@@ -1,0 +1,11 @@
+set cut_paste_input [stack 0]
+version 12.1 v2
+push $cut_paste_input
+NoOp {
+name mochaSetToFrame
+selected true
+xpos 3250
+ypos -2682
+addUserKnob {20 User}
+addUserKnob {22 setToFrame T "for node in nuke.selectedNodes():\n    node.knob('copy_to').execute()\n    node.knob('from1').clearAnimated()\n    node.knob('from2').clearAnimated()\n    node.knob('from3').clearAnimated()\n    node.knob('from4').clearAnimated()" +STARTLINE}
+}
