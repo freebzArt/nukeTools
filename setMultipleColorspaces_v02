@@ -1,0 +1,16 @@
+set cut_paste_input [stack 0]
+version 12.1 v2
+push $cut_paste_input
+NoOp {
+ name SetMultipleColorspace01
+ selected true
+ xpos -12822
+ ypos 588
+ addUserKnob {20 User}
+ addUserKnob {3 colorspaceInt t "the number in the list that the colorspace is, start at 0, 1, 2, etc."}
+ colorspaceInt 1
+ addUserKnob {22 get T "for node in nuke.selectedNodes():\n    z = node.knob('colorspace').getValue()\n    \nnuke.thisNode().knob('colorspaceInt').setValue(z)" +STARTLINE}
+ addUserKnob {22 set T "x = nuke.knob('colorspaceInt')\n\nfor node in nuke.selectedNodes():\n    node.knob('colorspace').setValue(x)" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 info l "" +STARTLINE T "Select node with colorspace that you want and hit \"get\" (or enter colorspace int if you know it)\n\nSelect read nodes to change\n\nHit \"Set\""}
+}
