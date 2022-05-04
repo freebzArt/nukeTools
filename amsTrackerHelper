@@ -3,29 +3,31 @@ version 12.1 v2
 push $cut_paste_input
 Group {
 name TrackerHelper
+tile_color 0x38499eff
+label :|
 selected true
-xpos -968
-ypos -2002
+xpos -867
+ypos -2155
 addUserKnob {20 User}
 addUserKnob {26 ColorCorrect l "" +STARTLINE T ColorCorrect}
 addUserKnob {7 ccContrast l contrast t ccContrast R 0 4}
-ccContrast 1.28
+ccContrast 1.44
 addUserKnob {7 ccGamma l gamma t ccGamma R 0 5}
-ccGamma 0.77
+ccGamma 0.68
 addUserKnob {7 ccGain l gain t ccGain R 0 5}
-ccGain 1
+ccGain 1.12
 addUserKnob {7 ccOffset l offset t ccOffset R -1 1}
-addUserKnob {26 "" +STARTLINE}
+addUserKnob {26 ""}
 addUserKnob {26 ShadowHighlight l "Shadow/Highlight Adjust" T ""}
 addUserKnob {7 shadowsLift t shadowsLift R 0 4}
 addUserKnob {7 shadowsMult t shadowsMult R 0 4}
 shadowsMult 1
 addUserKnob {7 highlightsMult t highlightsMult R 0 4}
 highlightsMult 0.81
-addUserKnob {26 "" +STARTLINE}
+addUserKnob {26 ""}
 addUserKnob {26 Sharpening l "" +STARTLINE T Sharpening}
 addUserKnob {7 sharpenAmount}
-sharpenAmount 1
+sharpenAmount 5
 addUserKnob {7 sharpenSize t sharpenSize R 0 100}
 sharpenSize 2
 addUserKnob {6 logSharpen t logSharpen +STARTLINE}
@@ -43,7 +45,7 @@ note_font_color 0xffffffff
 xpos -236
 ypos -232
 }
-set N156cec00 [stack 0]
+set N86d37800 [stack 0]
 Keyer {
 invert true
 operation "luminance key"
@@ -58,7 +60,7 @@ name Blur14
 xpos -69
 ypos -108
 }
-push $N156cec00
+push $N86d37800
 Keyer {
 operation "luminance key"
 range {0.8830332567 1 1 1}
@@ -73,7 +75,7 @@ name Blur4
 xpos -160
 ypos -190
 }
-push $N156cec00
+push $N86d37800
 Grade {
 inputs 1+1
 multiply {{highlightsMult x1586 0.82}}
@@ -98,7 +100,7 @@ name ColorCorrect6
 xpos -270
 ypos -36
 }
-set N21803000 [stack 0]
+set Ne4f33c00 [stack 0]
 Colorspace {
 colorspace_out AlexaV3LogC
 name Colorspace1
@@ -120,7 +122,7 @@ name Colorspace2
 xpos -153
 ypos 90
 }
-push $N21803000
+push $Ne4f33c00
 Sharpen {
 amount {{sharpenAmount}}
 size {{sharpenSize i}}
