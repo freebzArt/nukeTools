@@ -1,0 +1,859 @@
+set cut_paste_input [stack 0]
+version 13.2 v2
+BackdropNode {
+ inputs 0
+ name BackdropNode12
+ tile_color 0x388e8e00
+ label "<center>SPECULAR COMBINED"
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6376
+ ypos -3208
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode14
+ tile_color 0x388e8e00
+ label "<center>SPECULAR INDIR"
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6364
+ ypos -3808
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode17
+ tile_color 0x388e8e00
+ label <center>SPECULAR
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6367
+ ypos -2529
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode18
+ tile_color 0x388e8e00
+ label <center>DIFFUSE
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6368
+ ypos -5010
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode19
+ tile_color 0x388e8e00
+ label <center>COAT
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6368
+ ypos -1903
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode20
+ tile_color 0x388e8e00
+ label <center>SSS
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6370
+ ypos -1287
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode21
+ tile_color 0x388e8e00
+ label <center>TRANSMISSION
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6368
+ ypos -661
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode22
+ tile_color 0x388e8e00
+ label "<center>SPECULAR DIR"
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6364
+ ypos -4414
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode5
+ tile_color 0x388e8e00
+ label "<center>DIFFUSE COMBINED"
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6375
+ ypos -5628
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode8
+ tile_color 0x388e8e00
+ label "<center>DIFFUSE INDIR"
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6363
+ ypos -6230
+ bdwidth 1062
+ bdheight 521
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode9
+ tile_color 0x388e8e00
+ label "<center>DIFFUSE DIR"
+ note_font "Bitstream Vera Sans"
+ note_font_size 42
+ selected true
+ xpos 6363
+ ypos -6834
+ bdwidth 1062
+ bdheight 521
+}
+push $cut_paste_input
+PostageStamp {
+ name PostageStamp3
+ selected true
+ xpos 6526
+ ypos -7605
+ postage_stamp true
+}
+Dot {
+ name Dot58
+ note_font_color 0xffffffff
+ selected true
+ xpos 6560
+ ypos -7346
+}
+set Ncdfb0b10 [stack 0]
+Dot {
+ name Dot59
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -7346
+}
+Dot {
+ name Dot40
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -6694
+}
+set N1abf9c00 [stack 0]
+Dot {
+ name Dot41
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -6092
+}
+set Ncceb4140 [stack 0]
+Dot {
+ name Dot36
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -5488
+}
+set Ncd4a9cf0 [stack 0]
+Dot {
+ name Dot60
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -4870
+}
+set Nccfae200 [stack 0]
+Dot {
+ name Dot50
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -4274
+}
+set N58e9750 [stack 0]
+Dot {
+ name Dot51
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -3672
+}
+set Nd56d6100 [stack 0]
+Dot {
+ name Dot52
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -3068
+}
+set Na1ef98c0 [stack 0]
+Dot {
+ name Dot56
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -2390
+}
+set N1de769b0 [stack 0]
+Dot {
+ name Dot62
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -1763
+}
+set N8e364390 [stack 0]
+Dot {
+ name Dot64
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -1139
+}
+set Nfe8f8de0 [stack 0]
+Dot {
+ name Dot65
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos -521
+}
+set Nc3f102a0 [stack 0]
+Dot {
+ name Dot34
+ note_font_color 0xffffffff
+ selected true
+ xpos 7330
+ ypos 103
+}
+push $Nc3f102a0
+add_layer {transmission transmission.red transmission.green transmission.blue}
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 transmission
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 transmission.red 0 0 rgba.red 0 0 transmission.green 0 1 rgba.green 0 1 transmission.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle25
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6856
+ ypos -531
+}
+Unpremult {
+ name Unpremult7
+ selected true
+ xpos 6856
+ ypos -493
+}
+set N30a8b6b0 [stack 0]
+Dot {
+ name Dot66
+ note_font_color 0xffffffff
+ selected true
+ xpos 6890
+ ypos -239
+}
+push $N30a8b6b0
+push $Nfe8f8de0
+add_layer {sss sss.red sss.green sss.blue}
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 sss
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 sss.red 0 0 rgba.red 0 0 sss.green 0 1 rgba.green 0 1 sss.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle22
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6856
+ ypos -1149
+}
+Unpremult {
+ name Unpremult6
+ selected true
+ xpos 6856
+ ypos -1111
+}
+set Ncd4ad0f0 [stack 0]
+Dot {
+ name Dot67
+ note_font_color 0xffffffff
+ selected true
+ xpos 6890
+ ypos -865
+}
+push $Ncd4ad0f0
+push $N8e364390
+add_layer {coat coat.red coat.green coat.blue}
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 coat
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 coat.red 0 0 rgba.red 0 0 coat.green 0 1 rgba.green 0 1 coat.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle23
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6856
+ ypos -1773
+}
+Unpremult {
+ name Unpremult5
+ selected true
+ xpos 6856
+ ypos -1735
+}
+set Nfe1f9e50 [stack 0]
+Dot {
+ name Dot63
+ note_font_color 0xffffffff
+ selected true
+ xpos 6890
+ ypos -1481
+}
+push $Nfe1f9e50
+push $N1de769b0
+add_layer {specular specular.red specular.green specular.blue}
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 specular
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 specular.red 0 0 rgba.red 0 0 specular.green 0 1 rgba.green 0 1 specular.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle28
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6856
+ ypos -2400
+}
+Unpremult {
+ name Unpremult4
+ selected true
+ xpos 6856
+ ypos -2362
+}
+set N821be6b0 [stack 0]
+Dot {
+ name Dot57
+ note_font_color 0xffffffff
+ selected true
+ xpos 6890
+ ypos -2108
+}
+push $N821be6b0
+push $Na1ef98c0
+Dot {
+ name Dot53
+ note_font_color 0xffffffff
+ selected true
+ xpos 6891
+ ypos -3068
+}
+set Nbe20caf0 [stack 0]
+add_layer {diffuse_direct diffuse_direct.red diffuse_direct.green diffuse_direct.blue}
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 diffuse_direct
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 diffuse_direct.red 0 0 rgba.red 0 0 diffuse_direct.green 0 1 rgba.green 0 1 diffuse_direct.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle18
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6773
+ ypos -3031
+}
+push $Nbe20caf0
+add_layer {diffuse_indirect diffuse_indirect.red diffuse_indirect.green diffuse_indirect.blue}
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 diffuse_indirect
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 diffuse_indirect.red 0 0 rgba.red 0 0 diffuse_indirect.green 0 1 rgba.green 0 1 diffuse_indirect.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle19
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6963
+ ypos -3031
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge19
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6862
+ ypos -2968
+}
+Unpremult {
+ name Unpremult11
+ selected true
+ xpos 6862
+ ypos -2926
+}
+set Nd15e6290 [stack 0]
+Dot {
+ name Dot54
+ note_font_color 0xffffffff
+ selected true
+ xpos 6896
+ ypos -2725
+}
+push $Nd15e6290
+push $Nd56d6100
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 diffuse_indirect
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 diffuse_indirect.red 0 0 rgba.red 0 0 diffuse_indirect.green 0 1 rgba.green 0 1 diffuse_indirect.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle24
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6853
+ ypos -3682
+}
+Unpremult {
+ name Unpremult12
+ selected true
+ xpos 6853
+ ypos -3644
+}
+set Nd22dab70 [stack 0]
+Dot {
+ name Dot55
+ note_font_color 0xffffffff
+ selected true
+ xpos 6887
+ ypos -3390
+}
+push $Nd22dab70
+push $N58e9750
+add_layer {specular_direct specular_direct.red specular_direct.green specular_direct.blue}
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 specular_direct
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 specular_direct.red 0 0 rgba.red 0 0 specular_direct.green 0 1 rgba.green 0 1 specular_direct.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle26
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6853
+ ypos -4284
+}
+Unpremult {
+ name Unpremult13
+ selected true
+ xpos 6853
+ ypos -4246
+}
+set N22dfe770 [stack 0]
+Dot {
+ name Dot68
+ note_font_color 0xffffffff
+ selected true
+ xpos 6887
+ ypos -3992
+}
+push $N22dfe770
+push $Nccfae200
+add_layer {diffuse diffuse.red diffuse.green diffuse.blue}
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 diffuse
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 diffuse.red 0 0 rgba.red 0 0 diffuse.green 0 1 rgba.green 0 1 diffuse.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle20
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6856
+ ypos -4880
+}
+Unpremult {
+ name Unpremult3
+ selected true
+ xpos 6856
+ ypos -4842
+}
+set Nc1a0c4c0 [stack 0]
+Dot {
+ name Dot61
+ note_font_color 0xffffffff
+ selected true
+ xpos 6890
+ ypos -4588
+}
+push $Nc1a0c4c0
+push $Ncd4a9cf0
+Dot {
+ name Dot39
+ note_font_color 0xffffffff
+ selected true
+ xpos 6890
+ ypos -5488
+}
+set N6d26afe0 [stack 0]
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 diffuse_direct
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 diffuse_direct.red 0 0 rgba.red 0 0 diffuse_direct.green 0 1 rgba.green 0 1 diffuse_direct.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle14
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6772
+ ypos -5451
+}
+push $N6d26afe0
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 diffuse_indirect
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 diffuse_indirect.red 0 0 rgba.red 0 0 diffuse_indirect.green 0 1 rgba.green 0 1 diffuse_indirect.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle15
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6962
+ ypos -5451
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge14
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6861
+ ypos -5388
+}
+Unpremult {
+ name Unpremult8
+ selected true
+ xpos 6861
+ ypos -5346
+}
+set Na2ef2ea0 [stack 0]
+Dot {
+ name Dot37
+ note_font_color 0xffffffff
+ selected true
+ xpos 6895
+ ypos -5145
+}
+push $Na2ef2ea0
+push $Ncceb4140
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 diffuse_indirect
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 diffuse_indirect.red 0 0 rgba.red 0 0 diffuse_indirect.green 0 1 rgba.green 0 1 diffuse_indirect.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle16
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6852
+ ypos -6102
+}
+Unpremult {
+ name Unpremult9
+ selected true
+ xpos 6852
+ ypos -6064
+}
+set Nd2ada2b0 [stack 0]
+Dot {
+ name Dot42
+ note_font_color 0xffffffff
+ selected true
+ xpos 6886
+ ypos -5810
+}
+push $Nd2ada2b0
+push $N1abf9c00
+Shuffle2 {
+ fromInput1 {{0} B}
+ in1 diffuse_direct
+ fromInput2 {{0} B}
+ in2 rgba
+ mappings "4 diffuse_direct.red 0 0 rgba.red 0 0 diffuse_direct.green 0 1 rgba.green 0 1 diffuse_direct.blue 0 2 rgba.blue 0 2 rgba.alpha 1 3 rgba.alpha 0 3"
+ name Shuffle17
+ label "\[knob in1] \[knob in2] > \[knob out1] \[knob in2]"
+ selected true
+ xpos 6852
+ ypos -6704
+}
+Unpremult {
+ name Unpremult10
+ selected true
+ xpos 6852
+ ypos -6666
+}
+set Nd22deb90 [stack 0]
+Dot {
+ name Dot43
+ note_font_color 0xffffffff
+ selected true
+ xpos 6886
+ ypos -6412
+}
+push $Nd22deb90
+push $Ncdfb0b10
+Unpremult {
+ name Unpremult2
+ selected true
+ xpos 6526
+ ypos -7296
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge15
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -6666
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge16
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -6416
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge17
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -6064
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge18
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -5814
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge9
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -5346
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge10
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -5149
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge30
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -4842
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge31
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -4592
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge20
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -4246
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge21
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -3996
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge22
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -3644
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge27
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -3394
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge38
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -2926
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge39
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -2729
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge28
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -2362
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge29
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -2112
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge32
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -1735
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge33
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -1485
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge34
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -1111
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge35
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -869
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge36
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -493
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge37
+ label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+ selected true
+ xpos 6526
+ ypos -243
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy8
+ selected true
+ xpos 6526
+ ypos 93
+}
+Premult {
+ name Premult2
+ selected true
+ xpos 6526
+ ypos 131
+}
