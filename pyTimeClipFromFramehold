@@ -1,0 +1,5 @@
+for node in nuke.selectedNodes():
+    value = nuke.selectedNode().knob('firstFrame').getValue()
+    nuke.createNode("TimeClip")
+    nuke.selectedNode().knob('first').setValue(int(value))
+    nuke.selectedNode().knob('last').setValue(int(value))
