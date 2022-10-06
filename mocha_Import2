@@ -1,0 +1,93 @@
+set cut_paste_input [stack 0]
+version 12.1 v1
+push $cut_paste_input
+Group {
+ name mocha_import1
+ label mocha.130
+ selected true
+ xpos 6524
+ ypos 3020
+ addUserKnob {20 User l CornerPin2D}
+ addUserKnob {41 ref l "Reference Frame" T CornerPin2D1000.ref}
+ addUserKnob {41 operation l Operation T Switch1.operation}
+ addUserKnob {26 ""}
+ addUserKnob {41 to1 T CornerPin2D1000.to1}
+ addUserKnob {41 enable1 -STARTLINE T CornerPin2D1000.enable1}
+ addUserKnob {41 to2 T CornerPin2D1000.to2}
+ addUserKnob {41 enable2 -STARTLINE T CornerPin2D1000.enable2}
+ addUserKnob {41 to3 T CornerPin2D1000.to3}
+ addUserKnob {41 enable3 -STARTLINE T CornerPin2D1000.enable3}
+ addUserKnob {41 to4 T CornerPin2D1000.to4}
+ addUserKnob {41 enable4 -STARTLINE T CornerPin2D1000.enable4}
+ addUserKnob {22 copy l "copy from selected cornerpin" T "#this = nuke.toNode('mocha_import4')\nthis = nuke.thisNode()\nme = nuke.Root().selectedNode()\nif me.Class() != 'CornerPin2D':\n    print me.Class()\n    nuke.message(\"that's not a cornerpin node actually :/\")\nelse:\n    this\['to1'].fromScript(me\['to1'].toScript())\n    this\['to2'].fromScript(me\['to2'].toScript())\n    this\['to3'].fromScript(me\['to3'].toScript())\n    this\['to4'].fromScript(me\['to4'].toScript())" +STARTLINE}
+ addUserKnob {41 filter T CornerPin2D1000.filter}
+ addUserKnob {41 clamp -STARTLINE T CornerPin2D1000.clamp}
+ addUserKnob {41 black_outside l "black outside" -STARTLINE T CornerPin2D1000.black_outside}
+ addUserKnob {41 motionblur T CornerPin2D1000.motionblur}
+ addUserKnob {41 shutter T CornerPin2D1000.shutter}
+ addUserKnob {41 shutteroffset l "shutter offset" T CornerPin2D1000.shutteroffset}
+ addUserKnob {41 shuttercustomoffset l "" -STARTLINE T CornerPin2D1000.shuttercustomoffset}
+ addUserKnob {26 ""}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 672
+  ypos -321
+ }
+set N49e2f800 [stack 0]
+ CornerPin2D {
+  to1 {{CornerPin2D1000.from1} {CornerPin2D1000.from1}}
+  to2 {{CornerPin2D1000.from2} {CornerPin2D1000.from2}}
+  to3 {{CornerPin2D1000.from3} {CornerPin2D1000.from3}}
+  to4 {{CornerPin2D1000.from4} {CornerPin2D1000.from4}}
+  invert false
+  filter {{CornerPin2D1000.filter x1054 2}}
+  clamp {{CornerPin2D1000.clamp}}
+  black_outside {{CornerPin2D1000.black_outside}}
+  motionblur {{CornerPin2D1000.motionblur}}
+  shutter {{CornerPin2D1000.shutter}}
+  shutteroffset {{CornerPin2D1000.shutteroffset}}
+  shuttercustomoffset {{CornerPin2D1000.shuttercustomoffset}}
+  from1 {{CornerPin2D1000.to1} {CornerPin2D1000.to1}}
+  from2 {{CornerPin2D1000.to2} {CornerPin2D1000.to2}}
+  from3 {{CornerPin2D1000.to3} {CornerPin2D1000.to3}}
+  from4 {{CornerPin2D1000.to4} {CornerPin2D1000.to4}}
+  name CornerPin2D2000
+  xpos 725
+  ypos -226
+ }
+push $N49e2f800
+ CornerPin2D {
+  to1 {0 0}
+  to2 {1920 0}
+  to3 {1920 1080}
+  to4 {0 1080}
+  invert false
+  from1 {{to1(ref)} {to1(ref)}}
+  from2 {{to2(ref)} {to2(ref)}}
+  from3 {{to3(ref)} {to3(ref)}}
+  from4 {{to4(ref)} {to4(ref)}}
+  name CornerPin2D1000
+  xpos 615
+  ypos -226
+  addUserKnob {20 frames l "Refernce Frame"}
+  addUserKnob {3 ref l "Reference Frame" t "Defines the reference frame at which the transform is started from\n"}
+  ref 1050
+ }
+ Switch {
+  inputs 2
+  which {{operation}}
+  name Switch1
+  xpos 679
+  ypos -154
+  addUserKnob {20 User}
+  addUserKnob {4 operation l Operation M {MatchMove Stabilize ""}}
+  operation Stabilize
+ }
+ Output {
+  name Output1
+  xpos 679
+  ypos 14
+ }
+end_group
