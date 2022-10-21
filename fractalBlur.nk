@@ -1,16 +1,16 @@
 set cut_paste_input [stack 0]
-version 10.0 v5
+version 13.2 v2
 push $cut_paste_input
 Group {
-name Group5
+name FRACTAL
 help http://intranet/depts/Compositing:Nuke:Gizmos:FracktalBlur_FS
 selected true
-xpos 48530
-ypos 520
+xpos 4885
+ypos 2986
 addUserKnob {20 User}
 addUserKnob {41 channels T IDistort1.channels}
-addUserKnob {41 uv_scale l "distortion size" T IDistort1.uv_scale}
-addUserKnob {41 size l "distortion scale" T U.size}
+addUserKnob {41 uv_scale l " amount" T IDistort1.uv_scale}
+addUserKnob {41 size l "noise scale" T U.size}
 addUserKnob {41 zoffset l animation/seed T U.zoffset}
 addUserKnob {41 filter T IDistort1.filter}
 addUserKnob {41 octaves T U.octaves}
@@ -30,20 +30,20 @@ name Input1
 xpos -113
 ypos -220
 }
-set N5c616700 [stack 0]
+set N68efe900 [stack 0]
 AdjBBox {
 numpixels {{max(0,IDistort1.uv_scale.main) i} {max(0,parent.IDistort1.uv_scale.main) i}}
 name AdjBBox1
 xpos -22
 ypos -76
 }
-push $N5c616700
+push $N68efe900
 add_layer {tempDistortion tempDistortion.u tempDistortion.v}
 Noise {
 output {tempDistortion.u -tempDistortion.v}
 cliptype none
 replace true
-size 5
+size 8.8
 octaves 8
 gamma 1
 center {960 540}
@@ -51,7 +51,7 @@ name U
 xpos 80
 ypos -156
 }
-set Ne40e7240 [stack 0]
+set Nf4ffe4f0 [stack 0]
 Noise {
 output {-tempDistortion.u tempDistortion.v}
 cliptype none
@@ -82,7 +82,7 @@ name CopyBBox1
 xpos 83
 ypos 37
 }
-push $N5c616700
+push $N68efe900
 Copy {
 inputs 2
 channels tempDistortion
@@ -110,7 +110,7 @@ name Output1
 xpos -112
 ypos 301
 }
-push $Ne40e7240
+push $Nf4ffe4f0
 Shuffle {
 name Shuffle1
 xpos 80
