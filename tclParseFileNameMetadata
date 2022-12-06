@@ -1,0 +1,10 @@
+set cut_paste_input [stack 0]
+version 13.2 v2
+push $cut_paste_input
+NoOp {
+ name NoOp1
+ label "\[set fbasename \[file rootname \[file tail \[metadata input/filename]]]]"
+ selected true
+ xpos -1041
+ ypos 278
+}
