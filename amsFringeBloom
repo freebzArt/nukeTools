@@ -28,7 +28,7 @@ Group {
  addUserKnob {7 blueGamma l "Blue Gamma" R 0 5}
  blueGamma 1
  addUserKnob {26 "" +STARTLINE}
- addUserKnob {7 mix l MIx}
+ addUserKnob {7 mix l Mix}
  mix 1
 }
  Input {
