@@ -7,29 +7,30 @@ Group {
  tile_color 0xd89350ff
  note_font "Bitstream Vera Sans"
  selected true
- xpos 12765
- ypos 2991
+ xpos 12718
+ ypos 2998
  addUserKnob {20 User l Fringe}
- addUserKnob {7 blurRed l "Red Fringe Size" R 0 100}
+ addUserKnob {7 blurRed l redFringeSize R 0 100}
  blurRed 1
- addUserKnob {7 rblackPoint l "Red Black Point"}
- addUserKnob {7 redGamma l "Red Gamma" R 0 5}
+ addUserKnob {7 rblackPoint l redBlackPoint}
+ addUserKnob {7 redGamma R 0 5}
  redGamma 1
  addUserKnob {26 "" +STARTLINE}
- addUserKnob {7 blurGreen l "Green Fringe Size" R 0 100}
+ addUserKnob {7 blurGreen l greenFringeSize R 0 100}
  blurGreen 1.5
- addUserKnob {7 gblackPoint l "Green Black Point"}
- addUserKnob {7 greenGamma l "Green Gamma" R 0 5}
+ addUserKnob {7 gblackPoint l greenBlackPoint}
+ addUserKnob {7 greenGamma R 0 5}
  greenGamma 1
  addUserKnob {26 "" +STARTLINE}
- addUserKnob {7 blurBlue l "Blue Fringe Size" R 0 100}
+ addUserKnob {7 blurBlue l blueFringeSize R 0 100}
  blurBlue 4
- addUserKnob {7 bblackPoint l "Blue Black Point"}
- addUserKnob {7 blueGamma l "Blue Gamma" R 0 5}
+ addUserKnob {7 bblackPoint l blueBlackPoint}
+ addUserKnob {7 blueGamma R 0 5}
  blueGamma 1
  addUserKnob {26 "" +STARTLINE}
- addUserKnob {7 mix l Mix}
+ addUserKnob {7 mix}
  mix 1
+ addUserKnob {6 subOg l subtractInput +STARTLINE}
 }
  Input {
   inputs 0
@@ -43,6 +44,74 @@ Group {
   ypos -193
  }
 set N3e06b560 [stack 0]
+ Dot {
+  name Dot2
+  xpos -176
+  ypos -193
+ }
+set N1e036e30 [stack 0]
+ Dot {
+  name Dot3
+  xpos -32
+  ypos -193
+ }
+set N2e0b3dc0 [stack 0]
+ Dot {
+  name Dot4
+  xpos 81
+  ypos -193
+ }
+set N2e0de640 [stack 0]
+ Dot {
+  name Dot5
+  xpos 191
+  ypos -193
+ }
+set N2e1fbd10 [stack 0]
+ Dot {
+  name Dot6
+  xpos 335
+  ypos -193
+ }
+set N3286ce90 [stack 0]
+ Dot {
+  name Dot7
+  xpos 466
+  ypos -193
+ }
+set N2d74c0b0 [stack 0]
+ Dot {
+  name Dot8
+  xpos 576
+  ypos -193
+ }
+set N2e21abe0 [stack 0]
+ Dot {
+  name Dot9
+  xpos 720
+  ypos -193
+ }
+set N2df968f0 [stack 0]
+ Dot {
+  name Dot10
+  note_font_color 0xffffffff
+  xpos 1022
+  ypos -193
+ }
+ Dot {
+  name Dot11
+  note_font_color 0xffffffff
+  xpos 1022
+  ypos 185
+ }
+set Nefe02100 [stack 0]
+ Dot {
+  name Dot13
+  note_font_color 0xffffffff
+  xpos 1022
+  ypos 261
+ }
+push $N3e06b560
  Grade {
   blackpoint {{rblackPoint}}
   gamma {{parent.redGamma}}
@@ -50,13 +119,7 @@ set N3e06b560 [stack 0]
   xpos -320
   ypos -121
  }
-push $N3e06b560
- Dot {
-  name Dot2
-  xpos -176
-  ypos -193
- }
-set N1e036e30 [stack 0]
+push $N1e036e30
  Merge2 {
   inputs 2
   operation min
@@ -71,13 +134,7 @@ set N1e036e30 [stack 0]
   xpos -210
   ypos -82
  }
-push $N1e036e30
- Dot {
-  name Dot3
-  xpos -32
-  ypos -193
- }
-set N2e0b3dc0 [stack 0]
+push $N2e0b3dc0
  ChannelMerge {
   inputs 2
   A rgba.red
@@ -94,13 +151,7 @@ set N2e0b3dc0 [stack 0]
   xpos -32
   ypos 88
  }
-push $N2e0b3dc0
- Dot {
-  name Dot4
-  xpos 81
-  ypos -193
- }
-set N2e0de640 [stack 0]
+push $N2e0de640
  Grade {
   blackpoint {{parent.gblackPoint}}
   gamma {{parent.greenGamma}}
@@ -108,13 +159,7 @@ set N2e0de640 [stack 0]
   xpos 47
   ypos -121
  }
-push $N2e0de640
- Dot {
-  name Dot5
-  xpos 191
-  ypos -193
- }
-set N2e1fbd10 [stack 0]
+push $N2e1fbd10
  Merge2 {
   inputs 2
   operation min
@@ -129,13 +174,7 @@ set N2e1fbd10 [stack 0]
   xpos 157
   ypos -77
  }
-push $N2e1fbd10
- Dot {
-  name Dot6
-  xpos 335
-  ypos -193
- }
-set N3286ce90 [stack 0]
+push $N3286ce90
  ChannelMerge {
   inputs 2
   A rgba.green
@@ -154,13 +193,7 @@ set N3286ce90 [stack 0]
   xpos 301
   ypos 78
  }
-push $N3286ce90
- Dot {
-  name Dot7
-  xpos 466
-  ypos -193
- }
-set N2d74c0b0 [stack 0]
+push $N2d74c0b0
  Grade {
   blackpoint {{parent.bblackPoint}}
   gamma {{parent.blueGamma}}
@@ -168,13 +201,7 @@ set N2d74c0b0 [stack 0]
   xpos 432
   ypos -123
  }
-push $N2d74c0b0
- Dot {
-  name Dot8
-  xpos 576
-  ypos -193
- }
-set N2e21abe0 [stack 0]
+push $N2e21abe0
  Merge2 {
   inputs 2
   operation min
@@ -189,13 +216,7 @@ set N2e21abe0 [stack 0]
   xpos 542
   ypos -81
  }
-push $N2e21abe0
- Dot {
-  name Dot9
-  xpos 720
-  ypos -193
- }
-set N2df968f0 [stack 0]
+push $N2df968f0
  ChannelMerge {
   inputs 2
   A rgba.blue
@@ -213,23 +234,10 @@ set N2df968f0 [stack 0]
   from1 rgba.green
   to1 rgba.green
   name Copy2
-  selected true
   xpos 686
   ypos 72
  }
-push $N2df968f0
- Dot {
-  name Dot10
-  note_font_color 0xffffffff
-  xpos 1022
-  ypos -193
- }
- Dot {
-  name Dot11
-  note_font_color 0xffffffff
-  xpos 1022
-  ypos 185
- }
+push $Nefe02100
  Dissolve {
   inputs 2
   which {{parent.mix}}
@@ -237,9 +245,18 @@ push $N2df968f0
   xpos 686
   ypos 175
  }
+ Merge2 {
+  inputs 2
+  operation from
+  name Merge10
+  label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+  selected true
+  xpos 686
+  ypos 257
+ }
  Output {
   name Output1
   xpos 686
-  ypos 286
+  ypos 335
  }
 end_group
