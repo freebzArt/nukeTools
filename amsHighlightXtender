@@ -1,0 +1,154 @@
+set cut_paste_input [stack 0]
+version 13.2 v2
+push $cut_paste_input
+Group {
+ name amsHighlightXtender
+ selected true
+ xpos 14618
+ ypos 2182
+ addUserKnob {20 User}
+ addUserKnob {7 overallMult t "Overall mult at each step\n\n" R 1 5}
+ overallMult 1.4
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {7 multOffset t "Weights more brightening to happen at higher highlights. 0 is linear response. 1 is average curve, 3 is extreme curve." R 0 3}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {7 shadowKeyOffset t "1 is default. Lower values lowers contrast in extension matte further in the chain. Higher values increases contrast of matte further down the chain. " R 0 3}
+ shadowKeyOffset 1
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos 154
+  ypos -197
+ }
+ Dot {
+  name Dot33
+  note_font_color 0xffffffff
+  xpos 188
+  ypos -143
+ }
+set N11e367f0 [stack 0]
+ Keyer {
+  operation "luminance key"
+  name Keyer7
+  xpos 287
+  ypos -89
+ }
+push $N11e367f0
+ Grade {
+  inputs 1+1
+  multiply {{parent.NoOp1.overallMult}}
+  name Grade16
+  xpos 154
+  ypos -83
+ }
+ Dot {
+  name Dot34
+  note_font_color 0xffffffff
+  xpos 188
+  ypos -6
+ }
+set Nc17fce70 [stack 0]
+ Keyer {
+  operation "luminance key"
+  range {{parent.NoOp1.shadowKeyOffset*.01} 1 1 1}
+  name Keyer8
+  xpos 301
+  ypos 48
+ }
+push $Nc17fce70
+ Grade {
+  inputs 1+1
+  multiply {{parent.NoOp1.overallMult*((parent.NoOp1.multOffset*.1)+1)}}
+  name Grade17
+  xpos 154
+  ypos 54
+ }
+ Dot {
+  name Dot35
+  note_font_color 0xffffffff
+  xpos 188
+  ypos 152
+ }
+set Nb120aa80 [stack 0]
+ Keyer {
+  operation "luminance key"
+  range {{parent.NoOp1.shadowKeyOffset*.05} 1 1 1}
+  name Keyer9
+  xpos 301
+  ypos 206
+ }
+push $Nb120aa80
+ Grade {
+  inputs 1+1
+  multiply {{parent.NoOp1.overallMult*((parent.NoOp1.multOffset*.25)+1)}}
+  name Grade20
+  xpos 154
+  ypos 212
+ }
+ Dot {
+  name Dot36
+  note_font_color 0xffffffff
+  xpos 188
+  ypos 316
+ }
+set N49a0bd20 [stack 0]
+ Keyer {
+  operation "luminance key"
+  range {{parent.NoOp1.shadowKeyOffset*.1} 1 1 1}
+  name Keyer10
+  xpos 300
+  ypos 370
+ }
+push $N49a0bd20
+ Grade {
+  inputs 1+1
+  multiply {{parent.NoOp1.overallMult*((parent.NoOp1.multOffset*.5)+1)}}
+  name Grade21
+  xpos 154
+  ypos 376
+ }
+ Dot {
+  name Dot37
+  note_font_color 0xffffffff
+  xpos 188
+  ypos 472
+ }
+set Necd2ff50 [stack 0]
+ Keyer {
+  operation "luminance key"
+  range {{parent.NoOp1.shadowKeyOffset*.125} 1 1 1}
+  name Keyer11
+  xpos 297
+  ypos 526
+ }
+push $Necd2ff50
+ Grade {
+  inputs 1+1
+  multiply {{parent.NoOp1.overallMult*((parent.NoOp1.multOffset*1)+1)}}
+  name Grade22
+  xpos 154
+  ypos 532
+ }
+ Output {
+  name Output1
+  xpos 154
+  ypos 632
+ }
+ NoOp {
+  inputs 0
+  name NoOp1
+  xpos 12
+  ypos 50
+  addUserKnob {20 User}
+  addUserKnob {7 overallMult t "Overall mult at each step" R 0 5}
+  overallMult {{parent.overallMult}}
+  addUserKnob {26 ""}
+  addUserKnob {7 multOffset t "Weights more brightening to happen at higher highlights. 0 is linear response. 1 is average curve, 3 is extreme curve." R 0 3}
+  multOffset {{parent.multOffset}}
+  addUserKnob {26 ""}
+  addUserKnob {7 shadowKeyOffset t "1 is default. Lower values lowers restriction to highlights further in the chain. Higher values increases contrast of matte further down the chain. " R 0 3}
+  shadowKeyOffset {{parent.shadowKeyOffset}}
+ }
+end_group
