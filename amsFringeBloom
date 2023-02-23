@@ -1,71 +1,83 @@
 set cut_paste_input [stack 0]
-version 11.2 v3
+version 13.2 v2
 push $cut_paste_input
 Group {
- name fBloom
+ name amsFringeBloom
  help "Blooms highlight edges. Use the Black Point sliders for threshold and the Fringe Size sliders to adjust width of bloom.\nhttp://intranet/depts/Compositing:Nuke:Gizmos:Bloom_FS"
  tile_color 0xd89350ff
  note_font "Bitstream Vera Sans"
  selected true
- xpos 63
- ypos 1219
+ xpos 12765
+ ypos 2991
  addUserKnob {20 User l Fringe}
- addUserKnob {7 rblackPoint l "Red Black Point"}
  addUserKnob {7 blurRed l "Red Fringe Size" R 0 100}
  blurRed 1
- addUserKnob {7 gblackPoint l "Green Black Point"}
+ addUserKnob {7 rblackPoint l "Red Black Point"}
+ addUserKnob {7 redGamma l "Red Gamma" R 0 5}
+ redGamma 1
+ addUserKnob {26 "" +STARTLINE}
  addUserKnob {7 blurGreen l "Green Fringe Size" R 0 100}
  blurGreen 1.5
- addUserKnob {7 bblackPoint l "Blue Black Point"}
+ addUserKnob {7 gblackPoint l "Green Black Point"}
+ addUserKnob {7 greenGamma l "Green Gamma" R 0 5}
+ greenGamma 1
+ addUserKnob {26 "" +STARTLINE}
  addUserKnob {7 blurBlue l "Blue Fringe Size" R 0 100}
  blurBlue 4
+ addUserKnob {7 bblackPoint l "Blue Black Point"}
+ addUserKnob {7 blueGamma l "Blue Gamma" R 0 5}
+ blueGamma 1
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {7 mix l MIx}
+ mix 1
 }
  Input {
   inputs 0
   name Input1
   xpos -320
-  ypos -244
+  ypos -249
  }
  Dot {
   name Dot1
   xpos -286
-  ypos -188
+  ypos -193
  }
-set N91a3310 [stack 0]
+set N3e06b560 [stack 0]
  Grade {
-  blackpoint {{rblackPoint i}}
+  blackpoint {{rblackPoint}}
+  gamma {{parent.redGamma}}
   name redBlack
   xpos -320
-  ypos -116
+  ypos -121
  }
-push $N91a3310
+push $N3e06b560
  Dot {
   name Dot2
   xpos -176
-  ypos -188
+  ypos -193
  }
-set N91b7e50 [stack 0]
+set N1e036e30 [stack 0]
  Merge2 {
   inputs 2
   operation min
   name Merge3
   xpos -210
-  ypos -114
+  ypos -119
  }
  Blur {
   channels {rgba.red -rgba.green -rgba.blue none}
   size {{parent.blurRed i}}
   name blurRed
   xpos -210
-  ypos -77
+  ypos -82
  }
-push $N91b7e50
+push $N1e036e30
  Dot {
   name Dot3
   xpos -32
-  ypos -188
+  ypos -193
  }
-set N91d9600 [stack 0]
+set N2e0b3dc0 [stack 0]
  ChannelMerge {
   inputs 2
   A rgba.red
@@ -74,34 +86,41 @@ set N91d9600 [stack 0]
   output rgba.red
   name ChannelMerge1
   xpos -66
-  ypos -84
+  ypos -94
  }
-push $N91d9600
+ Dot {
+  name Dot12
+  note_font_color 0xffffffff
+  xpos -32
+  ypos 88
+ }
+push $N2e0b3dc0
  Dot {
   name Dot4
   xpos 81
-  ypos -188
+  ypos -193
  }
-set N91ea1f0 [stack 0]
+set N2e0de640 [stack 0]
  Grade {
-  blackpoint {{parent.gblackPoint i}}
+  blackpoint {{parent.gblackPoint}}
+  gamma {{parent.greenGamma}}
   name greenBlack1
   xpos 47
-  ypos -116
+  ypos -121
  }
-push $N91ea1f0
+push $N2e0de640
  Dot {
   name Dot5
   xpos 191
-  ypos -188
+  ypos -193
  }
-set N91fed50 [stack 0]
+set N2e1fbd10 [stack 0]
  Merge2 {
   inputs 2
   operation min
   name Merge1
   xpos 157
-  ypos -116
+  ypos -121
  }
  Blur {
   channels {-rgba.red rgba.green -rgba.blue none}
@@ -110,13 +129,13 @@ set N91fed50 [stack 0]
   xpos 157
   ypos -77
  }
-push $N91fed50
+push $N2e1fbd10
  Dot {
   name Dot6
   xpos 335
-  ypos -188
+  ypos -193
  }
-set N9220520 [stack 0]
+set N3286ce90 [stack 0]
  ChannelMerge {
   inputs 2
   A rgba.green
@@ -125,7 +144,7 @@ set N9220520 [stack 0]
   output rgba.green
   name ChannelMerge2
   xpos 301
-  ypos -84
+  ypos -89
  }
  Copy {
   inputs 2
@@ -133,48 +152,50 @@ set N9220520 [stack 0]
   to0 rgba.red
   name Copy1
   xpos 301
-  ypos 83
+  ypos 78
  }
-push $N9220520
+push $N3286ce90
  Dot {
   name Dot7
   xpos 466
-  ypos -188
+  ypos -193
  }
-set N923eaf0 [stack 0]
+set N2d74c0b0 [stack 0]
  Grade {
-  blackpoint {{parent.bblackPoint i}}
+  blackpoint {{parent.bblackPoint}}
+  gamma {{parent.blueGamma}}
   name blueBlack2
   xpos 432
-  ypos -118
+  ypos -123
  }
-push $N923eaf0
+push $N2d74c0b0
  Dot {
   name Dot8
   xpos 576
-  ypos -188
+  ypos -193
  }
-set N92534d0 [stack 0]
+set N2e21abe0 [stack 0]
  Merge2 {
   inputs 2
   operation min
   name Merge2
   xpos 542
-  ypos -118
+  ypos -123
  }
  Blur {
   channels {-rgba.red -rgba.green rgba.blue none}
-  size {{parent.blurBlue i}}
+  size {{parent.blurBlue}}
   name blurBlue
   xpos 542
   ypos -81
  }
-push $N92534d0
+push $N2e21abe0
  Dot {
   name Dot9
   xpos 720
-  ypos -188
+  ypos -193
  }
+set N2df968f0 [stack 0]
  ChannelMerge {
   inputs 2
   A rgba.blue
@@ -183,7 +204,7 @@ push $N92534d0
   output rgba.blue
   name ChannelMerge3
   xpos 686
-  ypos -88
+  ypos -93
  }
  Copy {
   inputs 2
@@ -192,13 +213,33 @@ push $N92534d0
   from1 rgba.green
   to1 rgba.green
   name Copy2
+  selected true
   xpos 686
-  ypos 83
+  ypos 72
+ }
+push $N2df968f0
+ Dot {
+  name Dot10
+  note_font_color 0xffffffff
+  xpos 1022
+  ypos -193
+ }
+ Dot {
+  name Dot11
+  note_font_color 0xffffffff
+  xpos 1022
+  ypos 185
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.mix}}
+  name Dissolve1
+  xpos 686
+  ypos 175
  }
  Output {
   name Output1
   xpos 686
-  ypos 195
+  ypos 286
  }
 end_group
-
