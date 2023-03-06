@@ -1,28 +1,48 @@
 set cut_paste_input [stack 0]
 version 13.2 v2
+push 0
 push $cut_paste_input
 Group {
+ inputs 2
  name amsDeErode
  selected true
- xpos 8763
- ypos 2071
+ xpos 3127
+ ypos -1816
  addUserKnob {20 User}
  addUserKnob {14 erodeSize t erodeSize R 0 100}
+ erodeSize 4
 }
+ Input {
+  inputs 0
+  name MASK
+  selected true
+  xpos 351
+  ypos 157
+  number 1
+ }
+ Dot {
+  name Dot1
+  note_font_color 0xffffffff
+  xpos 385
+  ypos 222
+ }
+set N79056270 [stack 0]
+push $N79056270
  Input {
   inputs 0
   name Input1
   xpos 201
-  ypos 179
+  ypos 152
  }
  FilterErode {
+  inputs 1+1
   size {{parent.erodeSize.w} {parent.erodeSize.h}}
   name FilterErode5
-  selected true
   xpos 201
   ypos 219
  }
  FilterErode {
+  inputs 1+1
   size {{parent.FilterErode5.size*(-1)}}
   name FilterErode6
   xpos 201
