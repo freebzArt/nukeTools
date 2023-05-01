@@ -1,0 +1,185 @@
+set cut_paste_input [stack 0]
+version 13.2 v2
+push 0
+push $cut_paste_input
+Group {
+ inputs 2
+ name amsGaussianEdgeXtend
+ selected true
+ xpos -745
+ ypos 20726
+ addUserKnob {20 User}
+ addUserKnob {7 blurSize l "blurSize (up to 5)" t "blurSize \n\n0 is one blur\n5 is 5 stacked blur" R 0 10}
+ blurSize 10
+ addUserKnob {7 mult t mult R 0 10}
+ mult {1.3}
+ addUserKnob {7 edgeBlurSize t edgeBlurSize R 0 25}
+ edgeBlurSize 3
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {7 erodeSize t "erodeSize \n\nerodes alpha before blurring out" R 0 25}
+ erodeSize {3}
+ addUserKnob {3 blurSlices t blurSlices}
+ blurSlices 2
+}
+ Input {
+  inputs 0
+  name matte
+  label matte
+  xpos 509
+  ypos 434
+ }
+ Dot {
+  name Dot80
+  label matte
+  note_font_color 0xffffffff
+  xpos 543
+  ypos 472
+ }
+ FilterErode {
+  size {{parent.erodeSize}}
+  name FilterErode11
+  xpos 367
+  ypos 462
+ }
+ Input {
+  inputs 0
+  name rgb
+  label rgb
+  xpos 205
+  ypos 269
+  number 1
+ }
+ Dot {
+  name Dot79
+  label source
+  note_font_color 0xffffffff
+  xpos 239
+  ypos 320
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy21
+  xpos 205
+  ypos 462
+ }
+ Premult {
+  name Premult19
+  xpos 205
+  ypos 624
+ }
+set N8fc204c0 [stack 0]
+ Dot {
+  name Dot77
+  note_font_color 0xffffffff
+  xpos 639
+  ypos 628
+ }
+ Dot {
+  name Dot78
+  note_font_color 0xffffffff
+  xpos 639
+  ypos 1110
+ }
+push $N8fc204c0
+ Blur {
+  channels rgba
+  size {{parent.blurSize}}
+  name Blur51
+  xpos 128
+  ypos 692
+ }
+set N427f5d50 [stack 0]
+ Blur {
+  channels rgba
+  size {{parent.Blur51.size*NoOp1.mult}}
+  name Blur52
+  xpos 202
+  ypos 741
+ }
+set Nd2678dd0 [stack 0]
+ Blur {
+  channels rgba
+  size {{Blur52.size*NoOp1.mult}}
+  name Blur53
+  xpos 254
+  ypos 781
+ }
+set Nf1403e40 [stack 0]
+ Blur {
+  channels rgba
+  size {{Blur53.size*NoOp1.mult x1250 10.24}}
+  name Blur54
+  xpos 331
+  ypos 833
+ }
+set Nb3ff59b0 [stack 0]
+ Blur {
+  channels rgba
+  size {{Blur54.size*NoOp1.mult x1250 10.24}}
+  name Blur55
+  xpos 398
+  ypos 886
+ }
+set N8f2b1a20 [stack 0]
+ Blur {
+  channels rgba
+  size {{Blur55.size*NoOp1.mult x1250 10.24}}
+  name Blur1
+  xpos 437
+  ypos 929
+ }
+push $N8f2b1a20
+push $Nb3ff59b0
+push $Nf1403e40
+push $Nd2678dd0
+push $N427f5d50
+ Switch {
+  inputs 6
+  which {{parent.blurSlices}}
+  name Switch1
+  selected true
+  xpos 202
+  ypos 964
+ }
+ Unpremult {
+  name Unpremult11
+  xpos 205
+  ypos 1036
+ }
+ Merge2 {
+  inputs 2
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge48
+  label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+  xpos 205
+  ypos 1106
+ }
+ EdgeBlur {
+  size {{parent.edgeBlurSize}}
+  name EdgeBlur3
+  xpos 205
+  ypos 1173
+ }
+ Dot {
+  name Dot82
+  note_font_color 0xffffffff
+  xpos 239
+  ypos 1350
+ }
+ Output {
+  name Output1
+  xpos 205
+  ypos 1484
+ }
+ NoOp {
+  inputs 0
+  name NoOp1
+  xpos 751
+  ypos 753
+  addUserKnob {20 User}
+  addUserKnob {7 mult t mult R 0 2}
+  mult {{parent.mult}}
+ }
+end_group
