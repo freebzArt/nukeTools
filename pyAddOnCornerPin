@@ -1,0 +1,9 @@
+def customCornerPin():
+	n = nuke.thisNode()
+	n.addKnob(nuke.Tab_Knob('Reference Frame'))
+	n.addKnob(nuke.Int_Knob('referenceFrame', "", 0))
+	n.addKnob(nuke.PyScript_Knob('set', "Set Reference Frame", "for node in nuke.selectedNodes():\n\tnode.knob('copy_to').execute()\n\tnode.knob('from1').clearAnimated()\n\tnode.knob('from2').clearAnimated()\n\tnode.knob('from3').clearAnimated()\n\tnode.knob('from4').clearAnimated()\n\tnode.knob('referenceFrame').setValue(nuke.frame())"))
+	n.addKnob(nuke.Text_Knob( "ttt", "" ))
+	n.addKnob(nuke.Text_Knob('Instructions', "", "Use Set Reference Frame button to update to current frame"))
+
+nuke.addOnCreate(customCornerPin, nodeClass="CornerPin2D")
