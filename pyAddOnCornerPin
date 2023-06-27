@@ -6,4 +6,4 @@ def customCornerPin():
 	n.addKnob(nuke.Text_Knob( "ttt", "" ))
 	n.addKnob(nuke.Text_Knob('Instructions', "", "Use Set Reference Frame button to update to current frame"))
 
-nuke.addOnCreate(customCornerPin, nodeClass="CornerPin2D")
+nuke.addOnUserCreate(customCornerPin, nodeClass="CornerPin2D")
