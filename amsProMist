@@ -1,0 +1,161 @@
+set cut_paste_input [stack 0]
+version 13.2 v2
+push $cut_paste_input
+Group {
+ name amsProMist
+ selected true
+ xpos -375
+ ypos 1075
+ addUserKnob {20 User}
+ addUserKnob {7 Amount t Amount R 0 100}
+ Amount 25
+ addUserKnob {7 Threshold t Threshold}
+ Threshold {0}
+ addUserKnob {7 Mix t Mix}
+ Mix 0.15
+ addUserKnob {4 Operation t "Screen\nPlus" M {Screen Plus}}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos 80
+  ypos -71
+ }
+ Dot {
+  name Dot5
+  note_font_color 0xffffffff
+  xpos 114
+  ypos 83
+ }
+set Ndb911a0 [stack 0]
+ Dot {
+  name Dot1
+  note_font_color 0xffffffff
+  xpos 496
+  ypos 256
+ }
+set Ndb93e60 [stack 0]
+ Dot {
+  name Dot2
+  note_font_color 0xffffffff
+  xpos 677
+  ypos 256
+ }
+ Keyer {
+  operation "luminance key"
+  range {{Threshold} 1 1 1}
+  name Keyer2
+  xpos 643
+  ypos 317
+ }
+ Premult {
+  name Premult2
+  xpos 643
+  ypos 375
+ }
+set Ndc13120 [stack 0]
+ Blur {
+  channels rgba
+  size {{Amount*2}}
+  name Blur1
+  xpos 563
+  ypos 421
+ }
+push $Ndc13120
+ Blur {
+  channels rgba
+  size {{Amount}}
+  name Blur2
+  xpos 716
+  ypos 425
+ }
+ Dissolve {
+  inputs 2
+  which 0.5
+  name Dissolve2
+  xpos 641
+  ypos 519
+ }
+push $Ndb93e60
+ Merge2 {
+  inputs 2
+  operation plus
+  mix {{Mix x147 0}}
+  name Merge1
+  label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+  xpos 462
+  ypos 525
+ }
+push $Ndb911a0
+ Dot {
+  name Dot3
+  note_font_color 0xffffffff
+  xpos -247
+  ypos 222
+ }
+set N35227290 [stack 0]
+ Dot {
+  name Dot4
+  note_font_color 0xffffffff
+  xpos -66
+  ypos 222
+ }
+ Keyer {
+  operation "luminance key"
+  range {{Threshold} 1 1 1}
+  name Keyer1
+  xpos -100
+  ypos 283
+ }
+ Premult {
+  name Premult1
+  xpos -100
+  ypos 341
+ }
+set N10c08c40 [stack 0]
+ Blur {
+  channels rgba
+  size {{Amount*2}}
+  name Blur3
+  xpos -180
+  ypos 387
+ }
+push $N10c08c40
+ Blur {
+  channels rgba
+  size {{Amount}}
+  name Blur4
+  xpos -27
+  ypos 391
+ }
+ Dissolve {
+  inputs 2
+  which 0.5
+  name Dissolve1
+  xpos -102
+  ypos 485
+ }
+push $N35227290
+ Merge2 {
+  inputs 2
+  operation screen
+  mix {{Mix x147 0}}
+  name Merge2
+  label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+  xpos -281
+  ypos 491
+ }
+ Switch {
+  inputs 2
+  which {{Operation}}
+  name Switch1
+  xpos 164
+  ypos 715
+ }
+ Output {
+  name Output1
+  xpos 164
+  ypos 838
+ }
+end_group
