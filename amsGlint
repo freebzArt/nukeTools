@@ -1,0 +1,683 @@
+set cut_paste_input [stack 0]
+version 13.2 v2
+push $cut_paste_input
+Group {
+name amsGlint
+selected true
+xpos 988
+ypos 2202
+addUserKnob {20 Streaks}
+addUserKnob {7 lLength l "l Length" R 0 500}
+lLength {346}
+addUserKnob {7 lSoft l "l Soft" R 0 15}
+lSoft {2.55}
+addUserKnob {7 lMult l "l Mult"}
+lMult {1}
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {7 hLength l "— Length" R 0 500}
+hLength 500
+addUserKnob {7 hSoft l "— Soft" R 0 15}
+hSoft 2.65
+addUserKnob {7 hMult l "— Mult"}
+hMult 1
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {7 dgrLength l "/ Length" R 0 500}
+dgrLength 262
+addUserKnob {7 dgrSoft l "/ Soft" R 0 15}
+dgrSoft 2.95
+addUserKnob {7 dgrMult l "/ Mult"}
+dgrMult 1
+addUserKnob {7 dgrAngle l "/ Angle" R -180 180}
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {7 dglLength l "\\ Length" R 0 500}
+dglLength 500
+addUserKnob {7 dglSoft l "\\ Soft" R 0 15}
+dglSoft 7.1
+addUserKnob {7 dglMult l "\\ Mult"}
+dglMult 1
+addUserKnob {7 dglAngle l "\\ Angle" R -180 180}
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {7 dgrrLength l "// Length" R 0 500}
+dgrrLength 410
+addUserKnob {7 dgrrSoft l "// Soft" R 0 15}
+dgrrSoft 4.25
+addUserKnob {7 dgrrMult l "// Mult"}
+dgrrMult 1
+addUserKnob {7 dgrrAngle l "// Angle" R -180 180}
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {7 dgllLength l "\\\\ Length" R 0 500}
+dgllLength 306
+addUserKnob {7 dgllSoft l "\\\\ Soft" R 0 15}
+dgllSoft 4.55
+addUserKnob {7 dgllMult l "\\\\ Mult"}
+dgllMult 1
+addUserKnob {7 dgllAngle l "\\\\ Angle" R -180 180}
+addUserKnob {20 Blend}
+addUserKnob {7 rotation l Rotation R -180 180}
+addUserKnob {7 downsize l Downsize}
+downsize 1
+addUserKnob {7 mult l Mult R 0 4}
+mult 0.1
+addUserKnob {7 gamma l Gamma R 0 4}
+gamma 0.34
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {7 redBlur l "Red Fringe" R 0 15}
+redBlur 5.3
+addUserKnob {7 greenBlur l "Green Fringe" R 0 15}
+greenBlur 5.1
+addUserKnob {7 blueBlur l "Blue Fringe" R 0 15}
+blueBlur 13.05
+addUserKnob {7 soft l Softness R 0 50}
+soft 0.8
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {4 mode l Plus/Screen M {Plus Screen}}
+addUserKnob {20 threshold l Threshold}
+addUserKnob {7 inputMult l "Input Mult" R 0 4}
+inputMult 0.44
+addUserKnob {7 inputGamma l "Input Gamma" R 0 4}
+inputGamma 0.74
+addUserKnob {7 threshold_1 l "Threshold "}
+threshold_1 0.605
+}
+StickyNote {
+inputs 0
+name StickyNote2
+tile_color 0x1a1a1aff
+label l
+note_font_size 100
+xpos 138
+ypos 469
+}
+StickyNote {
+inputs 0
+name StickyNote7
+tile_color 0x1a1a1aff
+label -
+note_font_size 100
+xpos 591
+ypos 465
+}
+StickyNote {
+inputs 0
+name StickyNote8
+tile_color 0x1a1a1aff
+label /
+note_font_size 100
+xpos 1038
+ypos 507
+}
+StickyNote {
+inputs 0
+name StickyNote9
+tile_color 0x1a1a1aff
+label "\\"
+note_font_size 100
+xpos 1611
+ypos 507
+}
+StickyNote {
+inputs 0
+name StickyNote10
+tile_color 0x1a1a1aff
+label //
+note_font_size 100
+xpos 2130
+ypos 507
+}
+StickyNote {
+inputs 0
+name StickyNote11
+tile_color 0x1a1a1aff
+label "\\\\\\"
+note_font_size 100
+xpos 2637
+ypos 516
+}
+Input {
+inputs 0
+name Input1
+xpos -268
+ypos -14
+}
+Dot {
+name Dot21
+note_font_color 0xffffffff
+xpos -234
+ypos 26
+hide_input true
+}
+set N1f4fe1c0 [stack 0]
+Dot {
+name Dot41
+note_font_color 0xffffffff
+xpos 263
+ypos 26
+}
+Grade {
+multiply {{inputMult}}
+gamma {{inputGamma}}
+name Grade16
+xpos 229
+ypos 124
+}
+Keyer {
+operation "luminance key"
+range {{threshold_1} 1 1 1}
+name Keyer3
+xpos 229
+ypos 184
+}
+Premult {
+name Premult4
+xpos 229
+ypos 257
+}
+Reformat {
+type scale
+scale {{downsize}}
+name Reformat1
+label "\[value format]"
+xpos 229
+ypos 340
+}
+Transform {
+rotate {{rotation}}
+center {960 540}
+shutteroffset centred
+name Transform1
+xpos 229
+ypos 384
+}
+Dot {
+name Dot23
+note_font_color 0xffffffff
+xpos 263
+ypos 430
+}
+set N2e29aa10 [stack 0]
+Dot {
+name Dot30
+note_font_color 0xffffffff
+xpos 738
+ypos 430
+}
+set N2e2c22d0 [stack 0]
+Dot {
+name Dot32
+note_font_color 0xffffffff
+xpos 1185
+ypos 430
+}
+set N2af255f0 [stack 0]
+Dot {
+name Dot33
+note_font_color 0xffffffff
+xpos 1758
+ypos 430
+}
+set N35829e30 [stack 0]
+Dot {
+name Dot36
+note_font_color 0xffffffff
+xpos 2277
+ypos 430
+}
+set N29e17570 [stack 0]
+Dot {
+name Dot38
+note_font_color 0xffffffff
+xpos 2803
+ypos 430
+}
+Transform {
+rotate {{-67+dgllAngle}}
+center {960 540}
+shutteroffset centred
+name Transform16
+xpos 2769
+ypos 494
+}
+set N3b6d1270 [stack 0]
+Blur {
+channels rgba
+size {{dgllSoft} {dgllLength/2}}
+name Blur6
+label "\[value size]"
+xpos 2875
+ypos 592
+}
+push $N3b6d1270
+Blur {
+channels rgba
+size {{dgllSoft} {dgllLength}}
+name Blur14
+label "\[value size]"
+xpos 2769
+ypos 582
+}
+Merge2 {
+inputs 2
+operation plus
+mix 0.705
+name Merge6
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 2765
+ypos 646
+}
+Transform {
+rotate {{(parent.Transform16.rotate)*(-1)}}
+center {960 540}
+shutteroffset centred
+name Transform17
+xpos 2769
+ypos 687
+}
+Dot {
+name Dot39
+note_font_color 0xffffffff
+xpos 2803
+ypos 1757
+}
+push $N29e17570
+Transform {
+rotate {{67+dgrrAngle}}
+center {960 540}
+shutteroffset centred
+name Transform14
+xpos 2243
+ypos 492
+}
+set N325e9000 [stack 0]
+Blur {
+channels rgba
+size {{dgrrSoft} {dgrrLength/2}}
+name Blur5
+label "\[value size]"
+xpos 2342
+ypos 560
+}
+push $N325e9000
+Blur {
+channels rgba
+size {{dgrrSoft} {dgrrLength}}
+name Blur13
+label "\[value size]"
+xpos 2243
+ypos 559
+}
+Merge2 {
+inputs 2
+operation plus
+mix 0.705
+name Merge5
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 2243
+ypos 633
+}
+Transform {
+rotate {{(parent.Transform14.rotate)*(-1)}}
+center {960 540}
+shutteroffset centred
+name Transform15
+xpos 2243
+ypos 686
+}
+Dot {
+name Dot37
+note_font_color 0xffffffff
+xpos 2277
+ypos 1558
+}
+push $N35829e30
+Transform {
+rotate {{-45+dglAngle}}
+center {960 540}
+shutteroffset centred
+name Transform12
+xpos 1724
+ypos 492
+cached true
+}
+set Nbd52960 [stack 0]
+Blur {
+channels rgba
+size {{dglSoft} {dglLength/2}}
+name Blur4
+label "\[value size]"
+xpos 1810
+ypos 565
+cached true
+}
+push $Nbd52960
+Blur {
+channels rgba
+size {{dglSoft} {dglLength}}
+name Blur11
+label "\[value size]"
+xpos 1724
+ypos 559
+cached true
+}
+Merge2 {
+inputs 2
+operation plus
+mix 0.705
+name Merge4
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 1724
+ypos 647
+}
+Transform {
+rotate {{(parent.Transform12.rotate)*(-1)}}
+center {960 540}
+shutteroffset centred
+name Transform13
+xpos 1724
+ypos 719
+cached true
+}
+Dot {
+name Dot35
+note_font_color 0xffffffff
+xpos 1758
+ypos 1326
+}
+push $N2af255f0
+Transform {
+rotate {{45+dgrAngle}}
+center {960 540}
+shutteroffset centred
+name Transform10
+xpos 1151
+ypos 494
+}
+Blur {
+channels rgba
+size {{dgrSoft} {dgrLength}}
+name Blur10
+label "\[value size]"
+selected true
+xpos 1151
+ypos 557
+}
+set N2cf42950 [stack 0]
+Blur {
+channels rgba
+size {{dgrSoft} {dgrLength/2}}
+name Blur3
+label "\[value size]"
+xpos 1286
+ypos 602
+}
+push $N2cf42950
+Merge2 {
+inputs 2
+operation plus
+mix 0.81
+name Merge3
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 1151
+ypos 631
+}
+Transform {
+rotate {{(parent.Transform10.rotate)*(-1)}}
+center {960 540}
+shutteroffset centred
+name Transform11
+xpos 1151
+ypos 675
+}
+Dot {
+name Dot34
+note_font_color 0xffffffff
+xpos 1185
+ypos 1118
+}
+push $N2e2c22d0
+Blur {
+channels rgba
+size {{hLength/2} {hSoft}}
+name Blur2
+label "\[value size]"
+xpos 820
+ypos 541
+}
+push $N2e2c22d0
+Blur {
+channels rgba
+size {{hLength} {hSoft}}
+name Blur8
+label "\[value size]"
+xpos 704
+ypos 518
+}
+Merge2 {
+inputs 2
+operation plus
+mix 0.81
+name Merge2
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 704
+ypos 610
+}
+Dot {
+name Dot31
+note_font_color 0xffffffff
+xpos 738
+ypos 956
+}
+push $N2e29aa10
+Dot {
+name Dot1
+note_font_color 0xffffffff
+xpos 263
+ypos 483
+}
+set Naa2d1920 [stack 0]
+Blur {
+channels rgba
+size {{lSoft} {lLength/2}}
+name Blur1
+label "\[value size]"
+xpos 350
+ypos 565
+}
+push $Naa2d1920
+Blur {
+channels rgba
+size {{lSoft} {lLength}}
+name Blur9
+label "\[value size]"
+xpos 229
+ypos 525
+}
+Merge2 {
+inputs 2
+operation plus
+mix 0.81
+name Merge1
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 229
+ypos 628
+}
+Multiply {
+value {{lMult}}
+name Multiply1
+xpos 229
+ypos 727
+}
+Merge2 {
+inputs 2
+operation plus
+mix {{hMult}}
+name Merge18
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 229
+ypos 952
+}
+Merge2 {
+inputs 2
+operation plus
+mix {{dgrMult}}
+name Merge21
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 229
+ypos 1114
+}
+Merge2 {
+inputs 2
+operation plus
+mix {{dglMult}}
+name Merge22
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 229
+ypos 1322
+}
+Merge2 {
+inputs 2
+operation plus
+mix {{dgrrMult}}
+name Merge23
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 229
+ypos 1554
+}
+Merge2 {
+inputs 2
+operation plus
+name Merge24
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos 229
+ypos 1753
+}
+Transform {
+rotate {{(parent.Transform1.rotate)*(-1) x1103 23}}
+center {960 540}
+shutteroffset centred
+name Transform2
+xpos 229
+ypos 1898
+}
+Reformat {
+type scale
+scale {{1/parent.Reformat1.scale}}
+name Reformat2
+label "\[value format]"
+xpos 229
+ypos 1924
+}
+Blur {
+channels {rgba.red -rgba.green -rgba.blue rgba.alpha}
+size {{redBlur}}
+name Blur12
+label "\[value size]"
+xpos 229
+ypos 2040
+}
+Blur {
+channels {-rgba.red rgba.green -rgba.blue rgba.alpha}
+size {{greenBlur}}
+name Blur15
+label "\[value size]"
+xpos 229
+ypos 2114
+}
+Blur {
+channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+size {{blueBlur}}
+name Blur16
+label "\[value size]"
+xpos 229
+ypos 2185
+}
+Blur {
+channels rgba
+size {{soft}}
+name Blur17
+label "\[value size]"
+xpos 229
+ypos 2262
+}
+Crop {
+box {0 0 {width} {height}}
+name Crop8
+xpos 229
+ypos 2414
+}
+Grade {
+multiply {{mult}}
+gamma {{gamma}}
+name Grade17
+xpos 229
+ypos 2466
+}
+Clamp {
+maximum_enable false
+name Clamp2
+xpos 229
+ypos 2642
+}
+Dot {
+name Dot42
+note_font_color 0xffffffff
+xpos 263
+ypos 2853
+}
+set Nc1c6680 [stack 0]
+push $N1f4fe1c0
+Dot {
+name Dot22
+note_font_color 0xffffffff
+xpos -245
+ypos 2585
+}
+set N326137c0 [stack 0]
+Dot {
+name Dot44
+note_font_color 0xffffffff
+xpos -409
+ypos 2585
+}
+Merge2 {
+inputs 2
+operation screen
+name Merge20
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos -443
+ypos 2849
+}
+Dot {
+name Dot40
+note_font_color 0xffffffff
+xpos -409
+ypos 3201
+}
+push $Nc1c6680
+Dot {
+name Dot43
+note_font_color 0xffffffff
+xpos 263
+ypos 3044
+}
+push $N326137c0
+Merge2 {
+inputs 2
+operation plus
+name Merge29
+label "\[expr \[value useLifetime]?\{\[value lifetimeStart] - \[value lifetimeEnd]\}:\"\"]"
+xpos -279
+ypos 3040
+}
+Switch {
+inputs 2
+which {{mode}}
+name Switch1
+xpos -279
+ypos 3197
+}
+Output {
+name Output1
+xpos -279
+ypos 3297
+}
+end_group
