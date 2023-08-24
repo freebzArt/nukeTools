@@ -1,0 +1,101 @@
+import os
+import re
+import nuke
+
+# Get the current script path
+current_script_path = nuke.root().name()
+
+# Find the job directory. The job directory is the directory right after '/mnt/jobs/'
+job_dir = os.path.join("/mnt/jobs", current_script_path.split('/mnt/jobs/', 1)[-1].split('/', 1)[0])
+
+# Define the root directory
+root_dir = os.path.join(job_dir, "sequence")
+
+# Get the sequence directories
+sequence_dirs = next(os.walk(root_dir))[1]
+
+# Create a dropdown menu for the sequence directories
+panel = nuke.Panel("Choose a sequence and versioning")
+panel.addEnumerationPulldown("sequence", " ".join(sequence_dirs))
+panel.addEnumerationPulldown("versioning", "latest all")
+panel.show()
+
+# Get the selected sequence and versioning option
+selected_sequence = panel.value("sequence")
+versioning_option = panel.value("versioning")
+
+# Define the sequence directory
+sequence_dir = os.path.join(root_dir, selected_sequence)
+
+# Allowed image extensions
+image_extensions = [".exr", ".png", ".tif"]
+
+# List to keep track of nodes
+correct_nodes = []
+rejected_nodes = []
+
+# Initial x position for nodes
+x_pos_correct = 0
+x_pos_rejected = 0  # Set this value to place the rejected nodes further away
+y_pos_rejected = 700  # Set this value to place the rejected nodes further away
+
+# Function to get latest version of plates
+def get_latest_version(files):
+    version_dict = {}
+    for file in files:
+        file_name = file.rsplit('.', 2)[0]
+        version_number = re.findall(r"v(\d+)", file_name)
+        if version_number:
+            version_number = version_number[0]
+            base_name = file_name.rsplit('v', 1)[0]
+            if base_name not in version_dict or version_number > version_dict[base_name][1]:
+                version_dict[base_name] = (file, version_number)
+    return [info[0] for info in version_dict.values()]
+
+# Function to group files by sequence
+def group_files_by_sequence(files):
+    sequence_dict = {}
+    for file in files:
+        file_name = file.rsplit('.', 2)[0]
+        base_name = re.sub(r"\d+$", "####", file_name)
+        sequence_dict.setdefault(base_name, []).append(file)
+    return sequence_dict.values()
+
+# Walk through the directory
+for dirpath, dirnames, _ in os.walk(sequence_dir):
+    # Only consider directories that contain the word 'plates'
+    if 'plates' in dirpath:
+        # For each subdirectory under the plates directory
+        for plate_dir in dirnames:
+            dp = os.path.join(dirpath, plate_dir)
+            sequence_files = [f for f in os.listdir(dp) if any(f.endswith(ext) for ext in image_extensions)]
+            if sequence_files:
+                if versioning_option == 'latest':
+                    sequences = [get_latest_version(sequence_files)]
+                else:
+                    sequences = group_files_by_sequence(sequence_files)
+
+                for seq_files in sequences:
+                    seq_files.sort()  # make sure the files are sorted
+                    sequence_name, ext = os.path.splitext(seq_files[0])
+                    sequence_name = re.sub(r"\d+$", "####", sequence_name.rsplit('.', 1)[0])
+                    file_path = os.path.join(dp, sequence_name) + ".%04d" + ext
+
+                    # Try to get the first and last frames, if an error occurs, handle it differently
+                    try:
+                        first_frame = int(seq_files[0].split('.')[-2])
+                        last_frame = int(seq_files[-1].split('.')[-2])
+
+                        # Create a read node
+                        read_node = nuke.nodes.Read(file=file_path, xpos=x_pos_correct)
+                        read_node['first'].setValue(first_frame)
+                        read_node['last'].setValue(last_frame)
+                        read_node['origfirst'].setValue(first_frame)
+                        read_node['origlast'].setValue(last_frame)
+                        correct_nodes.append(read_node)
+                        x_pos_correct += read_node.screenWidth() + 200
+                    except ValueError:
+                        # Create a read node
+                        read_node = nuke.nodes.Read(file=file_path, xpos=x_pos_rejected, ypos=y_pos_rejected)
+                        rejected_nodes.append(read_node)
+                        x_pos_rejected += read_node.screenWidth() + 200
