@@ -1,11 +1,13 @@
 set cut_paste_input [stack 0]
-version 12.1 v2
+version 14.0 v6
 push $cut_paste_input
 NoOp {
-name mochaSetToFrame
-selected true
-xpos 3250
-ypos -2682
-addUserKnob {20 User}
-addUserKnob {22 setToFrame T "for node in nuke.selectedNodes():\n    node.knob('copy_to').execute()\n    node.knob('from1').clearAnimated()\n    node.knob('from2').clearAnimated()\n    node.knob('from3').clearAnimated()\n    node.knob('from4').clearAnimated()" +STARTLINE}
+ name mochaSetToFrame
+ selected true
+ xpos -183
+ ypos -176
+ addUserKnob {20 User}
+ addUserKnob {26 info l "" +STARTLINE T "With mocha cornerpin selected punch 'setToFrame' \nto make current frame ref frame"}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {22 setToFrame T "for node in nuke.selectedNodes():\n    node.knob('copy_to').execute()\n    node.knob('from1').clearAnimated()\n    node.knob('from2').clearAnimated()\n    node.knob('from3').clearAnimated()\n    node.knob('from4').clearAnimated()" +STARTLINE}
 }
