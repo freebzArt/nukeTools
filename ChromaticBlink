@@ -1,0 +1,190 @@
+set cut_paste_input [stack 0]
+version 15.0 v2
+push 0
+push 0
+push $cut_paste_input
+Group {
+ inputs 3
+ name ChromaticBlink
+ tile_color 0xa479aaff
+ selected true
+ xpos 213
+ ypos 223
+ addUserKnob {20 ChromaticBlink}
+ addUserKnob {41 "Local GPU: " T BlinkScript12.gpuName}
+ addUserKnob {41 "Use GPU if Available" T BlinkScript12.useGPUIfAvailable}
+ addUserKnob {26 ""}
+ addUserKnob {41 resolution T BlinkScript12.ChromaticBlink_resolution}
+ addUserKnob {41 swapAB l "swap STmap inputs" -STARTLINE T BlinkScript12.ChromaticBlink_swapAB}
+ addUserKnob {41 aberrationMode l "Aberration Mode" T BlinkScript12.aberrationMode}
+ addUserKnob {41 iterations t " non-multiples of 6 cause colour innaccuracies, minumum of 12 recommended" T BlinkScript12.ChromaticBlink_iterations}
+ addUserKnob {26 note l "" -STARTLINE T " non-multiples of 6 cause colour innaccuracies, minumum of 12 recommended"}
+ addUserKnob {41 purpleAmount l "purple amount" T BlinkScript12.ChromaticBlink_purpleAmount}
+ addUserKnob {41 ChromaticBlink_from l from T BlinkScript12.ChromaticBlink_from}
+ addUserKnob {41 ChromaticBlink_to l "to colour" T BlinkScript12.ChromaticBlink_to}
+ addUserKnob {41 ChromaticBlink_gamma l gamma T BlinkScript12.ChromaticBlink_gamma}
+ addUserKnob {26 ""}
+ addUserKnob {22 createChromaticMerge l "create ChromaticMerge" T "ChromaticNode = nuke.thisNode()\n\nnuke.root().end()\n\nmergeExpressionNode = nuke.nodes.MergeExpression()\n\nmergeExpressionNode\['expr0'].setValue('Ar+Br*(1-AChromaticAlpha.red)') \nmergeExpressionNode\['expr1'].setValue('Ag+Bg*(1-AChromaticAlpha.green)') \nmergeExpressionNode\['expr2'].setValue('Ab+Bb*(1-AChromaticAlpha.blue)') \nmergeExpressionNode\['expr3'].setValue('Aa+Ba*(1-AChromaticAlpha.alpha)') \n\nmergeExpressionNode\['label'].setValue('(chromatic-over)')\nmergeExpressionNode\['xpos'].setValue(ChromaticNode\['xpos'].value()+120)\nmergeExpressionNode\['ypos'].setValue(ChromaticNode\['ypos'].value()+120)\nmergeExpressionNode.setInput(1, ChromaticNode)" +STARTLINE}
+ addUserKnob {22 createChromaticPremult l "create ChromaticPremult" -STARTLINE T "ChromaticNode = nuke.thisNode()\n\nnuke.root().end()\n\nexpressionNode = nuke.nodes.Expression()\n\nexpressionNode\['expr0'].setValue('r*ChromaticAlpha.red') \nexpressionNode\['expr1'].setValue('g*ChromaticAlpha.green') \nexpressionNode\['expr2'].setValue('b*ChromaticAlpha.blue') \n\n\nexpressionNode\['label'].setValue('(chromatic-premult)')\nexpressionNode\['xpos'].setValue(ChromaticNode\['xpos'].value()+120)\nexpressionNode\['ypos'].setValue(ChromaticNode\['ypos'].value()+120)\nexpressionNode.setInput(0, ChromaticNode)"}
+ addUserKnob {22 createChromaticUnpremult l "create ChromaticUnpremult" -STARTLINE T "ChromaticNode = nuke.thisNode()\n\nnuke.root().end()\n\nexpressionNode = nuke.nodes.Expression()\n\nexpressionNode\['expr0'].setValue('ChromaticAlpha.red > 0 ? r/ChromaticAlpha.red : r') \nexpressionNode\['expr1'].setValue('ChromaticAlpha.green > 0 ? g/ChromaticAlpha.green : g') \nexpressionNode\['expr2'].setValue('ChromaticAlpha.blue > 0 ? b/ChromaticAlpha.blue : b') \n\n\nexpressionNode\['label'].setValue('(chromatic-unpremult)')\nexpressionNode\['xpos'].setValue(ChromaticNode\['xpos'].value()+120)\nexpressionNode\['ypos'].setValue(ChromaticNode\['ypos'].value()+120)\nexpressionNode.setInput(0, ChromaticNode)"}
+ addUserKnob {41 outputChromaticAlpha l "output ChromaticAlpha" -STARTLINE T BlinkScript12.outputChromaticAlpha}
+ addUserKnob {26 ""}
+ addUserKnob {26 credit l "" +STARTLINE T "Chris Fryer | 2020"}
+}
+ Input {
+  inputs 0
+  name stmapB
+  xpos 2398
+  ypos 599
+  number 2
+ }
+ Dot {
+  name Dot1
+  xpos 2432
+  ypos 843
+ }
+set N200d8a00 [stack 0]
+ Dot {
+  name Dot3
+  xpos 2432
+  ypos 899
+ }
+ Input {
+  inputs 0
+  name stmapA
+  xpos 2210
+  ypos 601
+  number 1
+ }
+ Dot {
+  name Dot2
+  xpos 2244
+  ypos 775
+ }
+set N200d9600 [stack 0]
+ Input {
+  inputs 0
+  name img
+  xpos 1904
+  ypos 604
+ }
+ Dot {
+  name Dot6
+  xpos 1938
+  ypos 677
+ }
+set N200d9e00 [stack 0]
+ Dot {
+  name Dot8
+  xpos 2058
+  ypos 677
+ }
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle1
+  xpos 2024
+  ypos 800
+  disable {{1-parent.BlinkScript12.outputChromaticAlpha}}
+ }
+ BlinkScript {
+  inputs 3
+  recompileCount 565
+  ProgramGroup 1
+  KernelDescription "2 \"ChromaticBlink\" iterate pixelWise 644f35e70157fa31c1a980a4adee0620906d01daae8e8360e7f0f8ae29606779 4 \"src\" Read Random \"stmapA\" Read Point \"stmapB\" Read Point \"dst\" Write Point 8 \"resolution\" Float 2 AAAAAAAAAAA= \"swapAB\" Bool 1 AA== \"iterations\" Int 1 AAAAAA== \"affectColour\" Int 1 AAAAAA== \"purpleAmount\" Float 1 AAAAAA== \"from\" Float 4 AAAAAAAAAAAAAAAAAAAAAA== \"to\" Float 4 AAAAAAAAAAAAAAAAAAAAAA== \"gamma\" Float 4 AAAAAAAAAAAAAAAAAAAAAA== 8 \"resolution\" 2 1 \"swapAB\" 1 1 \"iterations\" 1 1 \"affectColour\" 1 1 \"purpleAmount\" 1 1 \"from\" 4 1 \"to\" 4 1 \"gamma\" 4 1 6 \"uvA\" Float 2 1 AAAAAAAAAAA= \"uvB\" Float 2 1 AAAAAAAAAAA= \"RGBA\" Float 4 1 AAAAAAAAAAAAAAAAAAAAAA== \"RGBA_tweaked\" Float 4 1 AAAAAAAAAAAAAAAAAAAAAA== \"output\" Float 4 1 AAAAAAAAAAAAAAAAAAAAAA== \"RGBA_temp\" Float 4 1 AAAAAAAAAAAAAAAAAAAAAA=="
+  kernelSource "kernel ChromaticBlink : ImageComputationKernel<ePixelWise>\n\{\n  Image<eRead, eAccessRandom, eEdgeClamped> src;\n  Image<eRead, eAccessPoint, eEdgeClamped> stmapA;\n  Image<eRead, eAccessPoint, eEdgeClamped> stmapB;\n  \n  Image<eWrite, eAccessPoint> dst;\n\n  param:\n   \n    float2 resolution;\n    bool swapAB;\n    int iterations;  \n    int affectColour;  \n    float purpleAmount;    \n    float4 from;\n    float4 to;\n    float4 gamma;\n\n  local:\n    float2 uvA;\n    float2 uvB;\n    float4 RGBA;\n    float4 RGBA_tweaked;\n    \n    float4 output;\n    float4 RGBA_temp;\n\n    \n\n  void process() \{\n    \n    float redMult = 0.0;\n    float greenMult = 0.0;\n    float blueMult = 0.0;\n    float iterationsFloat;\n    float adjuster = 0; \n\n    if (swapAB == 0)\{\n\n    uvA.x = stmapA().x * resolution.x - 0.5f;\n    uvA.y = stmapA().y * resolution.y - 0.5f;\n\n    uvB.x = stmapB().x * resolution.x - 0.5f;\n    uvB.y = stmapB().y * resolution.y - 0.5f;\n    \}\n    \n    else \{\n\n    uvB.x = stmapA().x * resolution.x - 0.5f;\n    uvB.y = stmapA().y * resolution.y - 0.5f;\n\n    uvA.x = stmapB().x * resolution.x - 0.5f;\n    uvA.y = stmapB().y * resolution.y - 0.5f;\n\n    \}\n\n    \n        \n    RGBA = 0.0f;\n    RGBA_tweaked = 0.0f;\n    RGBA_temp = 0.0f;\n    \n       \n\n    \n    \n    iterationsFloat = float(iterations);\n\n    for (int i = 0; i < iterations; i++)\{\n      \n      RGBA.x = RGBA.x + bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).x*pow((from.x+(to.x-from.x)*i/iterationsFloat),1.0f/gamma.x);\n      RGBA_temp.x = bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).x*pow((from.x+(to.x-from.x)*i/iterationsFloat),1.0f/gamma.x);      \n\n      RGBA.y = RGBA.y + bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).y*pow((from.y+(to.y-from.y)*i/iterationsFloat),1.0f/gamma.y);\n      RGBA_temp.y = bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).y*pow((from.y+(to.y-from.y)*i/iterationsFloat),1.0f/gamma.y);\n\n      RGBA.z = RGBA.z + bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).z*pow((from.z+(to.z-from.z)*i/iterationsFloat),1.0f/gamma.z);\n      RGBA_temp.z = bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).z*pow((from.z+(to.z-from.z)*i/iterationsFloat),1.0f/gamma.z);\n\n      RGBA.w = RGBA.w + bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).w*pow((from.w+(to.w-from.w)*i/iterationsFloat),1.0f/gamma.w);\n      RGBA_temp.w = bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).w*pow((from.w+(to.w-from.w)*i/iterationsFloat),1.0f/gamma.w);\n\n      adjuster = (i);\n\n      //pow((from+(to-from)*i/iterationsFloat),gamma)\n\n      if (affectColour == 1) \{\n\n        if( adjuster < 1*iterations/6) \{\n          redMult += (1/(iterationsFloat/6));\n          RGBA_tweaked.x += RGBA_temp.x*redMult;        \n        \}\n        else if(adjuster >= 1*iterations/6 && adjuster < 2*iterations/6)\{\n          \n          greenMult += (1/(iterationsFloat/6));    \n\n          RGBA_tweaked.x += RGBA_temp.x*redMult; \n          RGBA_tweaked.y += RGBA_temp.y*greenMult;\n        \}\n\n        else if(adjuster >= 2*iterations/6 && adjuster < 3*iterations/6)\{\n          redMult += -(1/(iterationsFloat/6));\n          \n          RGBA_tweaked.x += RGBA_temp.x*redMult; \n          RGBA_tweaked.y += RGBA_temp.y*greenMult;\n          \n        \}\n        else if(adjuster >= 3*iterations/6 && adjuster < 4*iterations/6)\{\n              \n          blueMult += (1/(iterationsFloat/6));\n           \n          RGBA_tweaked.y += RGBA_temp.y*greenMult;\n          RGBA_tweaked.z += RGBA_temp.z*blueMult;\n        \}\n        else if(adjuster >= 4*iterations/6 && adjuster < 5*iterations/6)\{\n          \n          greenMult += -(1/(iterationsFloat/6));    \n                  \n          RGBA_tweaked.y += RGBA_temp.y*greenMult;\n          RGBA_tweaked.z += RGBA_temp.z*blueMult;\n        \}\n        else if(adjuster >= 5*iterations/6 && adjuster < 6*iterations/6)\{\n          redMult += (1/(iterationsFloat/6));            \n          blueMult += -(1/(iterationsFloat/6));\n\n          RGBA_tweaked.x += RGBA_temp.x*redMult*blueMult*purpleAmount; \n          RGBA_tweaked.z += RGBA_temp.z*blueMult;\n        \}\n      \}\n\n      if (affectColour == 2) \{\n\n        greenMult = 1.0f - (i/iterationsFloat);\n        redMult = (i+1.0f)/iterationsFloat;\n        blueMult = (i+1.0f)/iterationsFloat;        \n\n        RGBA_tweaked.x += RGBA_temp.x*redMult;\n        RGBA_tweaked.y += RGBA_temp.y*greenMult;  \n        RGBA_tweaked.z += RGBA_temp.z*blueMult;  \n\n      \}\n\n\n\n    \}\n\n      if (affectColour == 1) \{\n        RGBA.x = 3.0*RGBA_tweaked.x/(1+(1-0.91672)*purpleAmount);\n        RGBA.y = 3.0*(2.0/3.0)*RGBA_tweaked.y;\n        RGBA.z = 3.0*RGBA_tweaked.z;\n      \}\n\n      if (affectColour == 2) \{\n        RGBA.x = (RGBA_tweaked.x*(2.0f))/(1.0f+(1.0f/iterationsFloat));\n        RGBA.y = (RGBA_tweaked.y*(2.0f))/(1.0f+(1.0f/iterationsFloat));\n        RGBA.z = (RGBA_tweaked.z*(2.0f))/(1.0f+(1.0f/iterationsFloat));\n      \}\n\n      output = (RGBA)/iterations;\n        \n    dst() = output;\n    \n  \}   \n\n  \n\};"
+  useGPUIfAvailable {{parent.BlinkScript12.useGPUIfAvailable}}
+  rebuild ""
+  ChromaticBlink_resolution {{parent.BlinkScript12.ChromaticBlink_resolution} {parent.BlinkScript12.ChromaticBlink_resolution}}
+  ChromaticBlink_swapAB {{parent.BlinkScript12.ChromaticBlink_swapAB}}
+  ChromaticBlink_iterations {{parent.BlinkScript12.ChromaticBlink_iterations}}
+  ChromaticBlink_affectColour {{parent.BlinkScript12.ChromaticBlink_affectColour}}
+  ChromaticBlink_purpleAmount {{parent.BlinkScript12.ChromaticBlink_purpleAmount}}
+  ChromaticBlink_from {{parent.BlinkScript12.ChromaticBlink_from} {parent.BlinkScript12.ChromaticBlink_from} {parent.BlinkScript12.ChromaticBlink_from} {parent.BlinkScript12.ChromaticBlink_from}}
+  ChromaticBlink_to {{parent.BlinkScript12.ChromaticBlink_to} {parent.BlinkScript12.ChromaticBlink_to} {parent.BlinkScript12.ChromaticBlink_to} {parent.BlinkScript12.ChromaticBlink_to}}
+  ChromaticBlink_gamma {{parent.BlinkScript12.ChromaticBlink_gamma} {parent.BlinkScript12.ChromaticBlink_gamma} {parent.BlinkScript12.ChromaticBlink_gamma} {parent.BlinkScript12.ChromaticBlink_gamma}}
+  rebuild_finalise ""
+  name BlinkScript1
+  selected true
+  xpos 2024
+  ypos 889
+  disable {{1-parent.BlinkScript12.outputChromaticAlpha}}
+  addUserKnob {20 User}
+  addUserKnob {4 aberrationMode l "Aberration Mode" M {None RGB G/RB}}
+ }
+set N472eb000 [stack 0]
+ Dot {
+  name Dot5
+  xpos 2058
+  ypos 982
+ }
+push $N200d8a00
+ Dot {
+  name Dot4
+  xpos 2025
+  ypos 843
+ }
+push $N200d9600
+ Dot {
+  name Dot7
+  xpos 2008
+  ypos 775
+ }
+push $N200d9e00
+ BlinkScript {
+  inputs 3
+  recompileCount 565
+  ProgramGroup 1
+  KernelDescription "2 \"ChromaticBlink\" iterate pixelWise 644f35e70157fa31c1a980a4adee0620906d01daae8e8360e7f0f8ae29606779 4 \"src\" Read Random \"stmapA\" Read Point \"stmapB\" Read Point \"dst\" Write Point 8 \"resolution\" Float 2 AAAAAAAAAAA= \"swapAB\" Bool 1 AA== \"iterations\" Int 1 AAAAAA== \"affectColour\" Int 1 AAAAAA== \"purpleAmount\" Float 1 AAAAAA== \"from\" Float 4 AAAAAAAAAAAAAAAAAAAAAA== \"to\" Float 4 AAAAAAAAAAAAAAAAAAAAAA== \"gamma\" Float 4 AAAAAAAAAAAAAAAAAAAAAA== 8 \"resolution\" 2 1 \"swapAB\" 1 1 \"iterations\" 1 1 \"affectColour\" 1 1 \"purpleAmount\" 1 1 \"from\" 4 1 \"to\" 4 1 \"gamma\" 4 1 6 \"uvA\" Float 2 1 AAAAAAAAAAA= \"uvB\" Float 2 1 AAAAAAAAAAA= \"RGBA\" Float 4 1 AAAAAAAAAAAAAAAAAAAAAA== \"RGBA_tweaked\" Float 4 1 AAAAAAAAAAAAAAAAAAAAAA== \"output\" Float 4 1 AAAAAAAAAAAAAAAAAAAAAA== \"RGBA_temp\" Float 4 1 AAAAAAAAAAAAAAAAAAAAAA=="
+  kernelSource "kernel ChromaticBlink : ImageComputationKernel<ePixelWise>\n\{\n  Image<eRead, eAccessRandom, eEdgeClamped> src;\n  Image<eRead, eAccessPoint, eEdgeClamped> stmapA;\n  Image<eRead, eAccessPoint, eEdgeClamped> stmapB;\n  \n  Image<eWrite, eAccessPoint> dst;\n\n  param:\n   \n    float2 resolution;\n    bool swapAB;\n    int iterations;  \n    int affectColour;  \n    float purpleAmount;    \n    float4 from;\n    float4 to;\n    float4 gamma;\n\n  local:\n    float2 uvA;\n    float2 uvB;\n    float4 RGBA;\n    float4 RGBA_tweaked;\n    \n    float4 output;\n    float4 RGBA_temp;\n\n    \n\n  void process() \{\n    \n    float redMult = 0.0;\n    float greenMult = 0.0;\n    float blueMult = 0.0;\n    float iterationsFloat;\n    float adjuster = 0; \n\n    if (swapAB == 0)\{\n\n    uvA.x = stmapA().x * resolution.x - 0.5f;\n    uvA.y = stmapA().y * resolution.y - 0.5f;\n\n    uvB.x = stmapB().x * resolution.x - 0.5f;\n    uvB.y = stmapB().y * resolution.y - 0.5f;\n    \}\n    \n    else \{\n\n    uvB.x = stmapA().x * resolution.x - 0.5f;\n    uvB.y = stmapA().y * resolution.y - 0.5f;\n\n    uvA.x = stmapB().x * resolution.x - 0.5f;\n    uvA.y = stmapB().y * resolution.y - 0.5f;\n\n    \}\n\n    \n        \n    RGBA = 0.0f;\n    RGBA_tweaked = 0.0f;\n    RGBA_temp = 0.0f;\n    \n       \n\n    \n    \n    iterationsFloat = float(iterations);\n\n    for (int i = 0; i < iterations; i++)\{\n      \n      RGBA.x = RGBA.x + bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).x*pow((from.x+(to.x-from.x)*i/iterationsFloat),1.0f/gamma.x);\n      RGBA_temp.x = bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).x*pow((from.x+(to.x-from.x)*i/iterationsFloat),1.0f/gamma.x);      \n\n      RGBA.y = RGBA.y + bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).y*pow((from.y+(to.y-from.y)*i/iterationsFloat),1.0f/gamma.y);\n      RGBA_temp.y = bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).y*pow((from.y+(to.y-from.y)*i/iterationsFloat),1.0f/gamma.y);\n\n      RGBA.z = RGBA.z + bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).z*pow((from.z+(to.z-from.z)*i/iterationsFloat),1.0f/gamma.z);\n      RGBA_temp.z = bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).z*pow((from.z+(to.z-from.z)*i/iterationsFloat),1.0f/gamma.z);\n\n      RGBA.w = RGBA.w + bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).w*pow((from.w+(to.w-from.w)*i/iterationsFloat),1.0f/gamma.w);\n      RGBA_temp.w = bilinear(src,(uvA.x+((uvB.x-uvA.x)*i)/iterations),(  uvA.y+  ((uvB.y-uvA.y)*i)/iterations)).w*pow((from.w+(to.w-from.w)*i/iterationsFloat),1.0f/gamma.w);\n\n      adjuster = (i);\n\n      //pow((from+(to-from)*i/iterationsFloat),gamma)\n\n      if (affectColour == 1) \{\n\n        if( adjuster < 1*iterations/6) \{\n          redMult += (1/(iterationsFloat/6));\n          RGBA_tweaked.x += RGBA_temp.x*redMult;        \n        \}\n        else if(adjuster >= 1*iterations/6 && adjuster < 2*iterations/6)\{\n          \n          greenMult += (1/(iterationsFloat/6));    \n\n          RGBA_tweaked.x += RGBA_temp.x*redMult; \n          RGBA_tweaked.y += RGBA_temp.y*greenMult;\n        \}\n\n        else if(adjuster >= 2*iterations/6 && adjuster < 3*iterations/6)\{\n          redMult += -(1/(iterationsFloat/6));\n          \n          RGBA_tweaked.x += RGBA_temp.x*redMult; \n          RGBA_tweaked.y += RGBA_temp.y*greenMult;\n          \n        \}\n        else if(adjuster >= 3*iterations/6 && adjuster < 4*iterations/6)\{\n              \n          blueMult += (1/(iterationsFloat/6));\n           \n          RGBA_tweaked.y += RGBA_temp.y*greenMult;\n          RGBA_tweaked.z += RGBA_temp.z*blueMult;\n        \}\n        else if(adjuster >= 4*iterations/6 && adjuster < 5*iterations/6)\{\n          \n          greenMult += -(1/(iterationsFloat/6));    \n                  \n          RGBA_tweaked.y += RGBA_temp.y*greenMult;\n          RGBA_tweaked.z += RGBA_temp.z*blueMult;\n        \}\n        else if(adjuster >= 5*iterations/6 && adjuster < 6*iterations/6)\{\n          redMult += (1/(iterationsFloat/6));            \n          blueMult += -(1/(iterationsFloat/6));\n\n          RGBA_tweaked.x += RGBA_temp.x*redMult*blueMult*purpleAmount; \n          RGBA_tweaked.z += RGBA_temp.z*blueMult;\n        \}\n      \}\n\n      if (affectColour == 2) \{\n\n        greenMult = 1.0f - (i/iterationsFloat);\n        redMult = (i+1.0f)/iterationsFloat;\n        blueMult = (i+1.0f)/iterationsFloat;        \n\n        RGBA_tweaked.x += RGBA_temp.x*redMult;\n        RGBA_tweaked.y += RGBA_temp.y*greenMult;  \n        RGBA_tweaked.z += RGBA_temp.z*blueMult;  \n\n      \}\n\n\n\n    \}\n\n      if (affectColour == 1) \{\n        RGBA.x = 3.0*RGBA_tweaked.x/(1+(1-0.91672)*purpleAmount);\n        RGBA.y = 3.0*(2.0/3.0)*RGBA_tweaked.y;\n        RGBA.z = 3.0*RGBA_tweaked.z;\n      \}\n\n      if (affectColour == 2) \{\n        RGBA.x = (RGBA_tweaked.x*(2.0f))/(1.0f+(1.0f/iterationsFloat));\n        RGBA.y = (RGBA_tweaked.y*(2.0f))/(1.0f+(1.0f/iterationsFloat));\n        RGBA.z = (RGBA_tweaked.z*(2.0f))/(1.0f+(1.0f/iterationsFloat));\n      \}\n\n      output = (RGBA)/iterations;\n        \n    dst() = output;\n    \n  \}   \n\n  \n\};"
+  rebuild ""
+  ChromaticBlink_resolution {{width} {height}}
+  ChromaticBlink_swapAB true
+  ChromaticBlink_iterations 24
+  ChromaticBlink_affectColour {{aberrationMode}}
+  ChromaticBlink_from 1
+  ChromaticBlink_to 1
+  ChromaticBlink_gamma 1
+  rebuild_finalise ""
+  name BlinkScript12
+  xpos 1904
+  ypos 889
+  addUserKnob {20 User}
+  addUserKnob {6 outputChromaticAlpha l "output ChromaticAlpha" +STARTLINE}
+  outputChromaticAlpha true
+  addUserKnob {4 aberrationMode l "Aberration Mode" M {None RGB G/RB}}
+  aberrationMode RGB
+ }
+add_layer {ChromaticAlpha ChromaticAlpha.red ChromaticAlpha.green ChromaticAlpha.blue ChromaticAlpha.alpha}
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 ChromaticAlpha.red
+  from1 rgba.green
+  to1 ChromaticAlpha.green
+  from2 rgba.blue
+  to2 ChromaticAlpha.blue
+  from3 rgba.alpha
+  to3 ChromaticAlpha.alpha
+  name Copy1
+  xpos 1904
+  ypos 952
+  disable {{1-parent.BlinkScript12.outputChromaticAlpha}}
+ }
+ Output {
+  name Output1
+  xpos 1904
+  ypos 1056
+ }
+push $N472eb000
+push $N472eb000
+ Viewer {
+  inputs 2
+  frame_range 1-100
+  colour_sample_bbox {0.231250003 0.05624999851 0.2322916687 0.05729166791}
+  name Viewer1
+  xpos 2156
+  ypos 1014
+ }
+end_group
